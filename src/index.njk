@@ -21,9 +21,9 @@ permalink: /
 <div class="home-books">
   {%- for book, pages in collections.pagesByBook -%}
     <a href="/books/book-{{ book | padPage }}/" class="home-book">
-      <div class="home-book__num">Volume {{ book }}</div>
-      <h3 class="home-book__title">Album of Memories, Book {{ book }}</h3>
-      <p class="home-book__count">{{ pages.length }} page{% if pages.length != 1 %}s{% endif %} transcribed</p>
+      <div class="home-book__num">{{ books[book].label }}</div>
+      <h3 class="home-book__title">{{ books[book].title }}</h3>
+      <p class="home-book__count">{{ pages.length }} {{ books[book].unit }}{% if pages.length != 1 %}s{% endif %} transcribed</p>
     </a>
   {%- endfor -%}
 </div>
