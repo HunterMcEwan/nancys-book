@@ -7,7 +7,7 @@ module.exports = {
     "with branches into the Hampton, Hammond, Pritchard, Stoney, and Gaillard " +
     "families of South Carolina.",
   // Update this when you set up a custom domain
-  url: "https://fitzsimons-archive.pages.dev",
+  url: "https://nancys-book.goodhunter.workers.dev",
   // Used in the footer
   attribution: "Compiled and transcribed by the family.",
   buildYear: new Date().getFullYear(),

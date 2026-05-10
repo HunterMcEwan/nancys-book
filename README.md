@@ -13,7 +13,7 @@ transcribed text of the handwritten material. The site is built with
 ## Quick start
 
 ```bash
-# Install dependencies (Node 18+ required)
+# Install dependencies (Node 22 required — verified on Cloudflare Pages)
 npm install
 
 # Run the local dev server (auto-rebuilds on save)
@@ -121,7 +121,7 @@ metadata, and uses progressive encoding for faster loading.
 3. Set the build configuration:
    - **Build command:** `npm run build`
    - **Build output directory:** `_site`
-   - **Node version:** `20` (set as environment variable `NODE_VERSION`)
+   - **Node version:** `22` (set as environment variable `NODE_VERSION`)
 4. Deploy. You'll get a URL like `fitzsimons-archive.pages.dev`
 5. (Optional) Add a custom domain in Cloudflare Pages settings (~$12/year
    if you register one through Cloudflare)
