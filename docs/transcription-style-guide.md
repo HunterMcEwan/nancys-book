@@ -66,6 +66,7 @@ Use these tags in the `content_types:` frontmatter field — these are the categ
 - `family anecdote` — recorded oral history
 - `recipe`
 - `legal document`
+- `epigraph` — an inscribed quotation, often a frontispiece or section opener
 - `ephemera` — anything else (calling cards, programs, receipts, etc.)
 
 ## Blank or untranscribed pages
