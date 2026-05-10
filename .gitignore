@@ -28,3 +28,10 @@ npm-debug.log*
 
 # Local Claude Code state (machine-specific)
 .claude/settings.local.json
+
+# wrangler files
+.wrangler
+.dev.vars*
+!.dev.vars.example
+.env*
+!.env.example
