@@ -32,6 +32,10 @@ npm-debug.log*
 # Personal notes for Claude (per-machine; not shared)
 CLAUDE.md
 
+# Working notes on the family tree as it emerges from transcription —
+# scratchpad, not part of the published site
+FAMILY-NOTES.md
+
 # wrangler files
 .wrangler
 .dev.vars*
