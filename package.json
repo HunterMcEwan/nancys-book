@@ -1,7 +1,7 @@
 {
   "name": "fitzsimons-archive",
   "version": "0.1.0",
-  "description": "Digital archive of the Fitz Simons family scrapbooks",
+  "description": "Digital archive of the FitzSimons family scrapbooks",
   "private": true,
   "scripts": {
     "dev": "eleventy --serve",

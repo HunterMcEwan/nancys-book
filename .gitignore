@@ -29,6 +29,9 @@ npm-debug.log*
 # Local Claude Code state (machine-specific)
 .claude/settings.local.json
 
+# Personal notes for Claude (per-machine; not shared)
+CLAUDE.md
+
 # wrangler files
 .wrangler
 .dev.vars*

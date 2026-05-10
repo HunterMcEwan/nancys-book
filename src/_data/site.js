@@ -1,9 +1,9 @@
 module.exports = {
-  title: "The Fitz Simons Family Archive",
-  subtitle: "Two scrapbooks of the Fitz Simons family of Charleston, S.C.",
+  title: "The FitzSimons Family Archive",
+  subtitle: "Two scrapbooks of the FitzSimons family of Charleston, S.C.",
   description:
     "A digital archive of family memoranda, letters, photographs, and clippings " +
-    "documenting the Fitz Simons family — emigrants from Dundalk, Ireland, " +
+    "documenting the FitzSimons family — emigrants from Dundalk, Ireland, " +
     "with branches into the Hampton, Hammond, Pritchard, Stoney, and Gaillard " +
     "families of South Carolina.",
   // Update this when you set up a custom domain

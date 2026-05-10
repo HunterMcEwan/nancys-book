@@ -1,6 +1,6 @@
 # Transcription Style Guide
 
-Conventions for transcribing the Fitz Simons family scrapbooks. Following these
+Conventions for transcribing the FitzSimons family scrapbooks. Following these
 keeps the archive consistent and makes the result genuinely useful for
 researchers and family.
 
@@ -33,12 +33,12 @@ layout).
 
 ## Names
 
-- Use the **fullest form** of a name in metadata, with parenthetical disambiguators where needed:
-  - `Christopher Fitz Simons (the emigrant)`
-  - `Christopher Fitz Simons (2nd)`
-  - `Catherine Fitz Simons (Mrs. Hammond)` — to distinguish from her mother
-- In the body text, reproduce the form the writer used.
-- For married women, list both maiden and married names where known: *Catherine Pritchard*, *Mrs. Hammond née Fitz Simons*.
+- **In metadata** (frontmatter `people:`, `title:`, `notes:`, and modern editorial prose): standardize the surname as `FitzSimons` — one word, capital S. This is the modern conventional form; using it consistently in metadata lets the People index aggregate references regardless of how each individual scribe spelled the name. Use the fullest form with parenthetical disambiguators where needed:
+  - `Christopher FitzSimons (the emigrant)`
+  - `Christopher FitzSimons (2nd)`
+  - `Catherine FitzSimons (Mrs. Hammond)` — to distinguish from her mother
+- **In body transcription text**: reproduce the spelling the writer used (the family wrote both `Fitz Simons` and `FitzSimons`; the original page is the authority).
+- For married women, list both maiden and married names in metadata where known: *Catherine Pritchard*, *Mrs. Hammond née FitzSimons*.
 
 ## Dates
 
@@ -82,7 +82,7 @@ image: 047.jpg
 transcribed: false
 content_types:
   - photograph
-notes: "Unidentified. Possibly a Fitz Simons or Walker descendant. Tintype, ca. 1880s."
+notes: "Unidentified. Possibly a FitzSimons or Walker descendant. Tintype, ca. 1880s."
 ---
 
 *This page contains no transcribable text. See notes.*
