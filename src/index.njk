@@ -1,0 +1,37 @@
+---
+layout: layouts/base.njk
+permalink: /
+---
+
+<section class="home-hero">
+  <p class="home-hero__eyebrow">A digital archive</p>
+  <h1>The Fitz Simons Family</h1>
+  <p>
+    Two scrapbooks of family memoranda, letters, photographs, and clippings —
+    documenting the Fitz Simons family of Charleston, S.C., emigrants from
+    Dundalk, Ireland, with branches into the Hampton, Hammond, Pritchard,
+    Stoney, and Gaillard families of South Carolina.
+  </p>
+</section>
+
+<h2 style="text-align:center; font-style:italic; font-weight:500; margin-bottom: var(--space-4);">
+  Browse the volumes
+</h2>
+
+<div class="home-books">
+  {%- for book, pages in collections.pagesByBook -%}
+    <a href="/books/book-{{ book | padPage }}/" class="home-book">
+      <div class="home-book__num">Volume {{ book }}</div>
+      <h3 class="home-book__title">Album of Memories, Book {{ book }}</h3>
+      <p class="home-book__count">{{ pages.length }} page{% if pages.length != 1 %}s{% endif %} transcribed</p>
+    </a>
+  {%- endfor -%}
+</div>
+
+<div style="text-align:center; margin-top: var(--space-5); font-family: var(--font-mono); font-size: 0.8rem; color: var(--color-ink-faded);">
+  <a href="/people/">People index</a>
+  &nbsp;·&nbsp;
+  <a href="/places/">Places index</a>
+  &nbsp;·&nbsp;
+  <a href="/about/">About this archive</a>
+</div>

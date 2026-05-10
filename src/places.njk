@@ -1,0 +1,28 @@
+---
+layout: layouts/base.njk
+permalink: /places/
+title: Places
+---
+
+<div class="index-page">
+  <h1>Places in the Archive</h1>
+  <p class="index-page__lede">
+    Every place mentioned in a transcribed page — the towns, plantations,
+    parishes, and burial grounds woven through the family's history.
+  </p>
+
+  {% if collections.places.length %}
+    <ul class="index-list">
+      {%- for place in collections.places -%}
+        <li>
+          <a href="/places/{{ place.slug }}/">
+            <span>{{ place.name }}</span>
+            <span class="index-list__count">{{ place.count }}</span>
+          </a>
+        </li>
+      {%- endfor -%}
+    </ul>
+  {% else %}
+    <p><em>No places indexed yet.</em></p>
+  {% endif %}
+</div>

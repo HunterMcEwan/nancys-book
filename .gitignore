@@ -1,0 +1,30 @@
+# Build output
+_site/
+
+# Dependencies
+node_modules/
+
+# Original archival scans — too large for Git, kept on external drive + cloud backup
+src/books/*/images/original/
+scans/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Editor
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# Logs
+*.log
+npm-debug.log*
+
+# Eleventy
+.cache/
+
+# Local Claude Code state (machine-specific)
+.claude/settings.local.json

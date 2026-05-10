@@ -1,0 +1,40 @@
+---
+layout: layouts/base.njk
+pagination:
+  data: collections.people
+  size: 1
+  alias: person
+permalink: "/people/{{ person.slug }}/"
+eleventyComputed:
+  title: "{{ person.name }}"
+---
+
+<article class="person-page">
+  <nav class="page-breadcrumb" aria-label="Breadcrumb">
+    <a href="/people/">People</a>
+    <span aria-hidden="true">›</span>
+    <span aria-current="page">{{ person.name }}</span>
+  </nav>
+
+  <p class="person-page__lede">
+    Mentioned in {{ person.count }} page{% if person.count != 1 %}s{% endif %}
+  </p>
+
+  <h1>{{ person.name }}</h1>
+
+  <ul class="book-pages">
+    {%- for p in person.pages -%}
+      <li>
+        <a href="{{ p.url }}">
+          <span class="book-pages__num">B{{ p.data.book }} · P. {{ p.data.pageNumber }}</span>
+          <span>
+            <span class="book-pages__title">{{ p.data.title }}</span>
+            {%- if p.data.date_range -%}
+              <span class="book-pages__meta">{{ p.data.date_range }}</span>
+            {%- endif -%}
+          </span>
+        </a>
+      </li>
+    {%- endfor -%}
+  </ul>
+</article>

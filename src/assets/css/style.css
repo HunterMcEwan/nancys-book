@@ -1,0 +1,629 @@
+/* ──────────────────────────────────────────────────────────────
+   The Fitz Simons Family Archive
+   Aesthetic: refined editorial, cream paper, deep ink, restrained
+   ────────────────────────────────────────────────────────────── */
+
+:root {
+  /* Color: warm parchment + deep ink + a single rust accent */
+  --color-paper: #f6efe1;
+  --color-paper-deep: #ede3cf;
+  --color-paper-rule: #d8cba8;
+  --color-ink: #1f1a14;
+  --color-ink-soft: #4a3f31;
+  --color-ink-faded: #7a6e5b;
+  --color-accent: #8b3a1f;
+  --color-accent-soft: #b8643d;
+  --color-link: #6b2818;
+
+  /* Typography */
+  --font-serif: 'EB Garamond', 'Iowan Old Style', Georgia, serif;
+  --font-mono: 'IBM Plex Mono', ui-monospace, 'SF Mono', Menlo, monospace;
+
+  /* Spacing rhythm based on a golden-ratio scale */
+  --space-1: 0.382rem;
+  --space-2: 0.618rem;
+  --space-3: 1rem;
+  --space-4: 1.618rem;
+  --space-5: 2.618rem;
+  --space-6: 4.236rem;
+
+  /* Layout widths */
+  --measure-prose: 38rem;       /* readable body text */
+  --measure-page: 56rem;        /* full content column */
+  --measure-wide: 76rem;        /* page wrapper */
+}
+
+/* ─── Reset / base ──────────────────────────────────────────── */
+
+*, *::before, *::after { box-sizing: border-box; }
+
+html {
+  font-size: 18px;
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  background: var(--color-paper);
+  color: var(--color-ink);
+  font-family: var(--font-serif);
+  font-feature-settings: "kern", "liga", "onum";
+  font-variant-numeric: oldstyle-nums;
+  line-height: 1.55;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  /* Subtle paper texture via gradient noise — keeps it from feeling flat */
+  background-image:
+    radial-gradient(circle at 20% 10%, rgba(139, 58, 31, 0.025) 0%, transparent 40%),
+    radial-gradient(circle at 80% 60%, rgba(31, 26, 20, 0.02) 0%, transparent 40%);
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+img { max-width: 100%; height: auto; display: block; }
+
+a {
+  color: var(--color-link);
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.2em;
+  transition: color 0.15s ease;
+}
+a:hover { color: var(--color-accent); }
+
+::selection {
+  background: var(--color-accent);
+  color: var(--color-paper);
+}
+
+/* ─── Typography ────────────────────────────────────────────── */
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-serif);
+  font-weight: 600;
+  letter-spacing: -0.005em;
+  line-height: 1.2;
+  margin-top: 0;
+}
+
+h1 { font-size: 2.4rem; }
+h2 { font-size: 1.7rem; }
+h3 { font-size: 1.25rem; }
+
+p { margin-block: 0 var(--space-3); }
+p + p { text-indent: 1.5em; }   /* book-like paragraph indent */
+
+blockquote {
+  margin: var(--space-4) 0;
+  padding: var(--space-3) var(--space-4);
+  border-left: 2px solid var(--color-accent);
+  background: var(--color-paper-deep);
+  font-style: italic;
+  color: var(--color-ink-soft);
+}
+blockquote p + p { text-indent: 0; }
+
+em, i { font-style: italic; }
+strong, b { font-weight: 600; color: var(--color-ink); }
+
+hr {
+  border: none;
+  border-top: 1px solid var(--color-paper-rule);
+  margin: var(--space-5) 0;
+}
+
+ul, ol { padding-left: 1.5em; }
+li { margin-bottom: var(--space-1); }
+
+/* Decorative drop cap on first paragraph of long-form pages */
+.dropcap::first-letter {
+  font-size: 4em;
+  float: left;
+  line-height: 0.85;
+  margin: 0.05em 0.08em 0 0;
+  font-weight: 600;
+  color: var(--color-accent);
+}
+
+/* ─── Header ────────────────────────────────────────────────── */
+
+.site-header {
+  background: var(--color-paper);
+  border-bottom: 1px solid var(--color-paper-rule);
+  padding: var(--space-3) var(--space-4);
+}
+
+.site-header__inner {
+  max-width: var(--measure-wide);
+  margin: 0 auto;
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: var(--space-4);
+  flex-wrap: wrap;
+}
+
+.site-header__title {
+  text-decoration: none;
+  color: var(--color-ink);
+  display: flex;
+  flex-direction: column;
+  line-height: 1;
+}
+.site-header__title-main {
+  font-size: 1.5rem;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+}
+.site-header__title-sub {
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--color-ink-faded);
+  margin-top: 0.3em;
+}
+
+.site-nav {
+  display: flex;
+  gap: var(--space-4);
+  flex-wrap: wrap;
+}
+.site-nav a {
+  color: var(--color-ink-soft);
+  text-decoration: none;
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  padding-bottom: 2px;
+  border-bottom: 1px solid transparent;
+  transition: all 0.15s ease;
+}
+.site-nav a:hover { color: var(--color-accent); }
+.site-nav a[aria-current="page"] {
+  color: var(--color-accent);
+  border-bottom-color: var(--color-accent);
+}
+
+/* ─── Main / footer ─────────────────────────────────────────── */
+
+.site-main {
+  flex: 1;
+  padding: var(--space-5) var(--space-4);
+  max-width: var(--measure-wide);
+  margin: 0 auto;
+  width: 100%;
+}
+
+.site-footer {
+  border-top: 1px solid var(--color-paper-rule);
+  padding: var(--space-4);
+  margin-top: var(--space-6);
+  background: var(--color-paper-deep);
+}
+.site-footer__inner {
+  max-width: var(--measure-wide);
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  gap: var(--space-3);
+  flex-wrap: wrap;
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  color: var(--color-ink-faded);
+}
+.site-footer p { margin: 0; }
+
+/* ─── Home page ─────────────────────────────────────────────── */
+
+.home-hero {
+  text-align: center;
+  padding: var(--space-5) 0 var(--space-6);
+  border-bottom: 1px solid var(--color-paper-rule);
+  margin-bottom: var(--space-5);
+}
+.home-hero__eyebrow {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--color-accent);
+  margin-bottom: var(--space-3);
+}
+.home-hero h1 {
+  font-size: clamp(2.2rem, 5vw, 3.5rem);
+  font-weight: 500;
+  font-style: italic;
+  margin-bottom: var(--space-3);
+}
+.home-hero p {
+  max-width: var(--measure-prose);
+  margin: 0 auto;
+  color: var(--color-ink-soft);
+  font-size: 1.1rem;
+}
+
+.home-books {
+  display: grid;
+  gap: var(--space-4);
+  grid-template-columns: repeat(auto-fit, minmax(min(20rem, 100%), 1fr));
+  margin-bottom: var(--space-5);
+}
+.home-book {
+  background: var(--color-paper-deep);
+  padding: var(--space-4);
+  border: 1px solid var(--color-paper-rule);
+  text-decoration: none;
+  color: var(--color-ink);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  display: block;
+}
+.home-book:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px -12px rgba(31, 26, 20, 0.25);
+  color: var(--color-ink);
+}
+.home-book__num {
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  letter-spacing: 0.2em;
+  color: var(--color-accent);
+  text-transform: uppercase;
+}
+.home-book__title {
+  font-size: 1.5rem;
+  margin: var(--space-1) 0 var(--space-2);
+}
+.home-book__count {
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  color: var(--color-ink-faded);
+}
+
+/* ─── Index pages (Books, People, Places) ───────────────────── */
+
+.index-page h1 {
+  border-bottom: 2px solid var(--color-ink);
+  padding-bottom: var(--space-2);
+  margin-bottom: var(--space-4);
+}
+.index-page__lede {
+  max-width: var(--measure-prose);
+  color: var(--color-ink-soft);
+  font-size: 1.05rem;
+  margin-bottom: var(--space-5);
+}
+
+.index-list {
+  list-style: none;
+  padding: 0;
+  display: grid;
+  gap: var(--space-2);
+  grid-template-columns: repeat(auto-fill, minmax(min(18rem, 100%), 1fr));
+}
+.index-list li {
+  margin: 0;
+  padding: var(--space-2) var(--space-3);
+  border-left: 2px solid var(--color-paper-rule);
+  transition: border-color 0.15s ease;
+}
+.index-list li:hover { border-left-color: var(--color-accent); }
+.index-list a {
+  color: var(--color-ink);
+  text-decoration: none;
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: var(--space-2);
+}
+.index-list a:hover { color: var(--color-accent); }
+.index-list__count {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  color: var(--color-ink-faded);
+}
+
+/* Book page list */
+.book-pages {
+  list-style: none;
+  padding: 0;
+  display: grid;
+  gap: var(--space-2);
+  grid-template-columns: repeat(auto-fill, minmax(min(22rem, 100%), 1fr));
+}
+.book-pages li { margin: 0; }
+.book-pages a {
+  display: flex;
+  gap: var(--space-3);
+  padding: var(--space-3);
+  background: var(--color-paper-deep);
+  border: 1px solid var(--color-paper-rule);
+  text-decoration: none;
+  color: var(--color-ink);
+  transition: all 0.15s ease;
+  align-items: flex-start;
+}
+.book-pages a:hover {
+  border-color: var(--color-accent);
+  background: var(--color-paper);
+}
+.book-pages__num {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  color: var(--color-accent);
+  flex-shrink: 0;
+  padding-top: 0.2em;
+  letter-spacing: 0.1em;
+}
+.book-pages__title {
+  font-size: 1.05rem;
+  font-weight: 500;
+  line-height: 1.3;
+  margin: 0 0 0.2em;
+}
+.book-pages__meta {
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  color: var(--color-ink-faded);
+  letter-spacing: 0.05em;
+}
+
+/* ─── Scrapbook page (the main view) ────────────────────────── */
+
+.scrapbook-page {
+  max-width: var(--measure-page);
+  margin: 0 auto;
+}
+
+.page-breadcrumb {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--color-ink-faded);
+  margin-bottom: var(--space-4);
+}
+.page-breadcrumb a { color: var(--color-ink-soft); text-decoration: none; }
+.page-breadcrumb a:hover { color: var(--color-accent); }
+.page-breadcrumb span[aria-hidden] { margin: 0 var(--space-1); color: var(--color-paper-rule); }
+
+.page-header {
+  text-align: center;
+  margin-bottom: var(--space-5);
+  padding-bottom: var(--space-4);
+  border-bottom: 1px solid var(--color-paper-rule);
+}
+.page-title {
+  font-size: clamp(1.8rem, 4vw, 2.6rem);
+  font-style: italic;
+  font-weight: 500;
+  margin-bottom: var(--space-2);
+  line-height: 1.15;
+}
+.page-citation {
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--color-ink-faded);
+  margin: 0;
+}
+.page-citation__sep { margin: 0 var(--space-2); color: var(--color-paper-rule); }
+
+/* The image: full width, generous margins, viewable enlarged */
+.page-image {
+  margin: 0 0 var(--space-5);
+  text-align: center;
+}
+.page-image img {
+  width: 100%;
+  max-width: 100%;
+  border: 1px solid var(--color-paper-rule);
+  background: var(--color-paper-deep);
+  box-shadow: 0 4px 24px -8px rgba(31, 26, 20, 0.15);
+  cursor: zoom-in;
+}
+.page-image figcaption {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  color: var(--color-ink-faded);
+  margin-top: var(--space-2);
+}
+.page-image figcaption a {
+  color: var(--color-accent);
+  text-decoration: none;
+}
+
+/* The transcription */
+.page-transcription {
+  max-width: var(--measure-prose);
+  margin: 0 auto var(--space-5);
+}
+.page-transcription__header {
+  text-align: center;
+  margin-bottom: var(--space-4);
+}
+.page-transcription__header h2 {
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+  font-weight: 500;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: var(--color-accent);
+  margin: 0;
+  display: inline-block;
+  padding: 0 var(--space-3);
+  position: relative;
+}
+.page-transcription__header h2::before,
+.page-transcription__header h2::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  width: 2rem;
+  height: 1px;
+  background: var(--color-paper-rule);
+}
+.page-transcription__header h2::before { right: 100%; }
+.page-transcription__header h2::after { left: 100%; }
+
+.page-transcription__status {
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  color: var(--color-ink-faded);
+  margin: var(--space-2) 0 0;
+}
+
+.page-transcription__body h1,
+.page-transcription__body h2 {
+  font-style: italic;
+  font-weight: 500;
+  margin-top: var(--space-4);
+  margin-bottom: var(--space-2);
+}
+.page-transcription__body h1 { font-size: 1.5rem; text-align: center; }
+.page-transcription__body h2 { font-size: 1.2rem; }
+.page-transcription__body h3 { font-size: 1.05rem; font-weight: 600; }
+
+.page-transcription__body blockquote {
+  font-size: 1.02em;
+}
+
+/* Metadata sidebar (becomes inline on mobile) */
+.page-meta {
+  background: var(--color-paper-deep);
+  padding: var(--space-4);
+  border: 1px solid var(--color-paper-rule);
+  margin-bottom: var(--space-5);
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(14rem, 100%), 1fr));
+  gap: var(--space-4);
+}
+.page-meta__section h3 {
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  font-weight: 500;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--color-accent);
+  margin-bottom: var(--space-2);
+  padding-bottom: var(--space-1);
+  border-bottom: 1px solid var(--color-paper-rule);
+}
+.page-meta__section ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+.page-meta__section li {
+  margin-bottom: var(--space-1);
+  font-size: 0.95rem;
+}
+.page-meta__section a {
+  color: var(--color-ink);
+  text-decoration: none;
+  border-bottom: 1px solid transparent;
+  transition: border-color 0.15s ease;
+}
+.page-meta__section a:hover {
+  color: var(--color-accent);
+  border-bottom-color: var(--color-accent);
+}
+.page-meta__tags li {
+  display: inline-block;
+  padding: 0.15em 0.6em;
+  margin: 0 0.3em 0.3em 0;
+  background: var(--color-paper);
+  border: 1px solid var(--color-paper-rule);
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.05em;
+  color: var(--color-ink-soft);
+}
+
+/* Prev / next pager */
+.page-pager {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-3);
+  margin-top: var(--space-5);
+  padding-top: var(--space-4);
+  border-top: 1px solid var(--color-paper-rule);
+}
+.page-pager a {
+  display: block;
+  padding: var(--space-3);
+  background: var(--color-paper-deep);
+  border: 1px solid var(--color-paper-rule);
+  text-decoration: none;
+  color: var(--color-ink);
+  transition: all 0.15s ease;
+}
+.page-pager a:hover {
+  border-color: var(--color-accent);
+  background: var(--color-paper);
+}
+.page-pager__direction {
+  display: block;
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--color-accent);
+  margin-bottom: 0.3em;
+}
+.page-pager__title {
+  display: block;
+  font-size: 0.95rem;
+  line-height: 1.3;
+}
+.page-pager__next a { text-align: right; }
+.page-pager__prev:empty,
+.page-pager__next:empty { /* keeps grid balanced when at start/end */ }
+
+/* ─── Person / Place detail pages ───────────────────────────── */
+
+.person-page h1, .place-page h1 {
+  font-style: italic;
+  font-weight: 500;
+  border-bottom: 2px solid var(--color-ink);
+  padding-bottom: var(--space-2);
+  margin-bottom: var(--space-4);
+}
+.person-page__lede, .place-page__lede {
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--color-ink-faded);
+  margin-bottom: var(--space-4);
+}
+
+/* ─── Mobile responsiveness ─────────────────────────────────── */
+
+@media (max-width: 640px) {
+  html { font-size: 17px; }
+
+  .site-header__inner {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--space-3);
+  }
+  .site-nav { gap: var(--space-3); }
+
+  .page-pager {
+    grid-template-columns: 1fr;
+  }
+  .page-pager__next a { text-align: left; }
+
+  .home-hero { padding: var(--space-4) 0; }
+}
+
+/* Prefer reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}

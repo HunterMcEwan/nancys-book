@@ -1,0 +1,25 @@
+---
+layout: layouts/base.njk
+permalink: /books/
+title: Books
+---
+
+<div class="index-page">
+  <h1>The Volumes</h1>
+  <p class="index-page__lede">
+    The archive consists of two scrapbook volumes compiled by family members
+    over the course of the late nineteenth and twentieth centuries. Each
+    contains scanned pages with full transcriptions where the handwriting has
+    been deciphered.
+  </p>
+
+  <div class="home-books">
+    {%- for book, pages in collections.pagesByBook -%}
+      <a href="/books/book-{{ book | padPage }}/" class="home-book">
+        <div class="home-book__num">Volume {{ book }}</div>
+        <h3 class="home-book__title">Album of Memories, Book {{ book }}</h3>
+        <p class="home-book__count">{{ pages.length }} page{% if pages.length != 1 %}s{% endif %} transcribed</p>
+      </a>
+    {%- endfor -%}
+  </div>
+</div>

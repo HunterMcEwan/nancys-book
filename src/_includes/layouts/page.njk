@@ -1,0 +1,120 @@
+---
+layout: layouts/base.njk
+---
+
+{% set prev = collections.allPages | prevPage(pageNumber, book) %}
+{% set next = collections.allPages | nextPage(pageNumber, book) %}
+
+<article class="scrapbook-page">
+
+  {# Breadcrumb / context bar #}
+  <nav class="page-breadcrumb" aria-label="Breadcrumb">
+    <a href="/books/">Books</a>
+    <span aria-hidden="true">›</span>
+    <a href="/books/book-{{ book | padPage }}/">Book {{ book }}</a>
+    <span aria-hidden="true">›</span>
+    <span aria-current="page">Page {{ pageNumber }}</span>
+  </nav>
+
+  <header class="page-header">
+    <h1 class="page-title">{{ title }}</h1>
+    <p class="page-citation">
+      <span class="page-citation__label">Book {{ book }}, Page {{ pageNumber }}</span>
+      {% if date_range %}<span class="page-citation__sep">·</span><span>{{ date_range }}</span>{% endif %}
+    </p>
+  </header>
+
+  {# ─── Image ────────────────────────────────────────────────── #}
+  <figure class="page-image">
+    <a href="/books/book-{{ book | padPage }}/images/web/{{ image }}"
+       target="_blank"
+       rel="noopener"
+       aria-label="View full-size image in new tab">
+      <img src="/books/book-{{ book | padPage }}/images/web/{{ image }}"
+           alt="Scanned page {{ pageNumber }} of Book {{ book }}"
+           loading="eager" />
+    </a>
+    <figcaption>
+      Scan of original.
+      <a href="/books/book-{{ book | padPage }}/images/web/{{ image }}" target="_blank" rel="noopener">Open full size →</a>
+    </figcaption>
+  </figure>
+
+  {# ─── Transcription ───────────────────────────────────────── #}
+  <section class="page-transcription">
+    <header class="page-transcription__header">
+      <h2>Transcription</h2>
+      {% if not transcribed %}
+        <p class="page-transcription__status">⚠ Not yet transcribed.</p>
+      {% endif %}
+    </header>
+
+    <div class="page-transcription__body">
+      {{ content | safe }}
+    </div>
+  </section>
+
+  {# ─── Metadata sidebar ─────────────────────────────────────── #}
+  <aside class="page-meta">
+    {% if people and people.length %}
+      <section class="page-meta__section">
+        <h3>People mentioned</h3>
+        <ul>
+          {% for person in people %}
+            <li><a href="/people/{{ person | slugify }}/">{{ person }}</a></li>
+          {% endfor %}
+        </ul>
+      </section>
+    {% endif %}
+
+    {% if places and places.length %}
+      <section class="page-meta__section">
+        <h3>Places</h3>
+        <ul>
+          {% for place in places %}
+            <li><a href="/places/{{ place | slugify }}/">{{ place }}</a></li>
+          {% endfor %}
+        </ul>
+      </section>
+    {% endif %}
+
+    {% if content_types and content_types.length %}
+      <section class="page-meta__section">
+        <h3>Type of content</h3>
+        <ul class="page-meta__tags">
+          {% for type in content_types %}
+            <li>{{ type }}</li>
+          {% endfor %}
+        </ul>
+      </section>
+    {% endif %}
+
+    {% if notes %}
+      <section class="page-meta__section">
+        <h3>Notes</h3>
+        <p>{{ notes }}</p>
+      </section>
+    {% endif %}
+  </aside>
+
+  {# ─── Prev / Next navigation ──────────────────────────────── #}
+  <nav class="page-pager" aria-label="Pages within this book">
+    <div class="page-pager__prev">
+      {% if prev %}
+        <a href="{{ prev.url }}" rel="prev">
+          <span class="page-pager__direction">← Previous</span>
+          <span class="page-pager__title">Page {{ prev.data.pageNumber }}: {{ prev.data.title }}</span>
+        </a>
+      {% endif %}
+    </div>
+    <div class="page-pager__next">
+      {% if next %}
+        <a href="{{ next.url }}" rel="next">
+          <span class="page-pager__direction">Next →</span>
+          <span class="page-pager__title">Page {{ next.data.pageNumber }}: {{ next.data.title }}</span>
+        </a>
+      {% endif %}
+    </div>
+  </nav>
+
+</article>

@@ -1,0 +1,37 @@
+---
+layout: layouts/base.njk
+permalink: /books/book-002/
+title: Album of Memories, Book 2
+---
+
+<div class="index-page">
+  <nav class="page-breadcrumb" aria-label="Breadcrumb">
+    <a href="/books/">Books</a>
+    <span aria-hidden="true">›</span>
+    <span aria-current="page">Book 2</span>
+  </nav>
+
+  <h1>Album of Memories — Book 2</h1>
+  <p class="index-page__lede">
+    The second volume continues the family record, with additional
+    correspondence, photographs, and clippings.
+  </p>
+
+  <ul class="book-pages">
+    {%- for page in collections.pagesByBook[2] -%}
+      <li>
+        <a href="{{ page.url }}">
+          <span class="book-pages__num">P. {{ page.data.pageNumber }}</span>
+          <span>
+            <span class="book-pages__title">{{ page.data.title }}</span>
+            {%- if page.data.date_range -%}
+              <span class="book-pages__meta">{{ page.data.date_range }}</span>
+            {%- endif -%}
+          </span>
+        </a>
+      </li>
+    {%- else -%}
+      <li><em>No pages transcribed yet.</em></li>
+    {%- endfor -%}
+  </ul>
+</div>

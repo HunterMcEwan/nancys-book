@@ -1,0 +1,40 @@
+---
+layout: layouts/base.njk
+pagination:
+  data: collections.places
+  size: 1
+  alias: place
+permalink: "/places/{{ place.slug }}/"
+eleventyComputed:
+  title: "{{ place.name }}"
+---
+
+<article class="place-page">
+  <nav class="page-breadcrumb" aria-label="Breadcrumb">
+    <a href="/places/">Places</a>
+    <span aria-hidden="true">›</span>
+    <span aria-current="page">{{ place.name }}</span>
+  </nav>
+
+  <p class="place-page__lede">
+    Mentioned in {{ place.count }} page{% if place.count != 1 %}s{% endif %}
+  </p>
+
+  <h1>{{ place.name }}</h1>
+
+  <ul class="book-pages">
+    {%- for p in place.pages -%}
+      <li>
+        <a href="{{ p.url }}">
+          <span class="book-pages__num">B{{ p.data.book }} · P. {{ p.data.pageNumber }}</span>
+          <span>
+            <span class="book-pages__title">{{ p.data.title }}</span>
+            {%- if p.data.date_range -%}
+              <span class="book-pages__meta">{{ p.data.date_range }}</span>
+            {%- endif -%}
+          </span>
+        </a>
+      </li>
+    {%- endfor -%}
+  </ul>
+</article>

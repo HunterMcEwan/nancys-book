@@ -1,0 +1,29 @@
+---
+layout: layouts/base.njk
+permalink: /people/
+title: People
+---
+
+<div class="index-page">
+  <h1>People in the Archive</h1>
+  <p class="index-page__lede">
+    Every person mentioned in a transcribed page. Click any name to see all
+    pages referencing them. Compiled automatically from the metadata in each
+    page's frontmatter.
+  </p>
+
+  {% if collections.people.length %}
+    <ul class="index-list">
+      {%- for person in collections.people -%}
+        <li>
+          <a href="/people/{{ person.slug }}/">
+            <span>{{ person.name }}</span>
+            <span class="index-list__count">{{ person.count }}</span>
+          </a>
+        </li>
+      {%- endfor -%}
+    </ul>
+  {% else %}
+    <p><em>No people indexed yet — add some `people:` entries to a page's frontmatter.</em></p>
+  {% endif %}
+</div>
