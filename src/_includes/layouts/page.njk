@@ -25,18 +25,24 @@ layout: layouts/base.njk
   </header>
 
   {# ─── Image ────────────────────────────────────────────────── #}
+  {% set webSrc = "/books/book-" ~ (book | padPage) ~ "/images/web/" ~ image %}
+  {% if site.originalsUrl %}
+    {% set fullSrc = site.originalsUrl ~ "/book-" ~ (book | padPage) ~ "/" ~ image %}
+  {% else %}
+    {% set fullSrc = webSrc %}
+  {% endif %}
   <figure class="page-image">
-    <a href="/books/book-{{ book | padPage }}/images/web/{{ image }}"
+    <a href="{{ fullSrc }}"
        target="_blank"
        rel="noopener"
        aria-label="View full-size image in new tab">
-      <img src="/books/book-{{ book | padPage }}/images/web/{{ image }}"
+      <img src="{{ webSrc }}"
            alt="Scanned page {{ pageNumber }} of Book {{ book }}"
            loading="eager" />
     </a>
     <figcaption>
       Scan of original.
-      <a href="/books/book-{{ book | padPage }}/images/web/{{ image }}" target="_blank" rel="noopener">Open full size →</a>
+      <a href="{{ fullSrc }}" target="_blank" rel="noopener">Open full size →</a>
     </figcaption>
   </figure>
 
