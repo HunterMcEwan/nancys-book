@@ -41,6 +41,9 @@ FAMILY-NOTES.md
 .triage.json
 .repass-candidates.json
 
+# Scratch file used to pass multi-line commit messages to git
+.commit-msg.txt
+
 # wrangler files
 .wrangler
 .dev.vars*
