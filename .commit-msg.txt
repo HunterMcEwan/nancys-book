@@ -1,0 +1,47 @@
+Enhanced transcription Batch 1: pages 093, 239, 262, 272, 293
+
+Continuing the enhanced re-transcription pass on the highest-marker
+pages remaining after the previous push. All 5 pages have substantial
+corrections; most dramatic:
+
+- 293: Page is printed newsprint with illustration, not cursive — 75+
+  original [illegible] markers were avoidable. Wedding at home of
+  Rawlins Lowndes; bridegroom Francis Simmons. Illustration caption
+  recovered. Marital home: 131 Tradd Street, Charleston.
+
+- 262: Letter narrates death of Mrs. Milliken to her daughter Mollie.
+  Phase-1's "heavily cross-hatched, three orientations, largely
+  illegible" reading was wrong — only the bottom quarter is rotated
+  supplement in the same hand. Recovered Dr. Moultrie, Dr. Bellinger,
+  Mrs. Northrop, Uncle Eddie. Clinical detail "inflammation of the
+  Kidneys", "at 8 o'clock the morning after".
+
+- 272: Mounted slip is "message from Gen'l. Wade Hampton" (not
+  "passage from grand uncle Hampton"). Pencil text is a comic
+  valentine verse dictated by "Allie" to Dr. Christopher FitzSimons
+  (3rd). Photo has TWO captions (above + below) with initials
+  G.S.F.S./C.F.S./S.G.F./S.S.F.S.
+
+- 239: Continues page 240's biography of Theodore Gaillard Barker
+  (Garland → Gaillard correction propagating). Recovered Susan
+  Milliken Barker grandmother, Louisa Preston King wife, John B.
+  Irving / Louisa Cheves Stoney book citation. Right column reframed
+  as Cardinal Richelieu / Napoleon Bonaparte comparison anecdote
+  (not biography).
+
+- 093: Confirmed NOT cross-written — perpendicular text is upper-
+  margin overflow, not a full second layer. Letter from Walhalla
+  June 1st. Brother Frances → Brother Theodore (Stoney). Mrs. Davis
+  → Mr. Dewees (daughter Addy Dewees). Capt. Cam Evans recovered
+  from "Capt. [illegible]". Hallucinations removed: Frank Campbell,
+  Pomerie, Lieut. Coleman.
+
+Mechanics:
+- docs/enhanced-transcription-procedure.md: corrected the cross-
+  written cluster note — pages 093 and 094 are NOT cross-written,
+  just in poor condition. Cluster is 092, 095, 097 (plus 261 and 514).
+- data/enhanced-pages.csv: 6 new tracking rows.
+- data/master-index.csv: rebuilt.
+
+All 5 pages now carry transcription_pass: enhanced in frontmatter.
+Preflight clean: 2669 unique people slugs across 960 pages.

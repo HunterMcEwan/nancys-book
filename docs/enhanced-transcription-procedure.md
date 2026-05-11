@@ -53,9 +53,11 @@ A page is a candidate if **all** of:
   / `[word?]` markers (≥3, or any single dense cluster).
 
 Cross-written pages (two layers of writing at perpendicular angles —
-e.g. pages 092–097) are a separate, harder problem and **not addressed
-by this procedure**; cropping and contrast don't separate overlapping
-ink layers.
+e.g. pages 092, 095, 097) are a separate, harder problem and **not
+addressed by this procedure**; cropping and contrast don't separate
+overlapping ink layers. Note: the cross-written cluster is NOT
+contiguous — pages 093 and 094 are in poor condition but are NOT
+cross-written, and are valid candidates for this procedure.
 
 To find candidates, see `data/repass-candidates.json` (regenerate with
 the scoring script if pages have changed). To track what has already
