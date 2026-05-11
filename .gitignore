@@ -36,6 +36,11 @@ CLAUDE.md
 # scratchpad, not part of the published site
 FAMILY-NOTES.md
 
+# Enhanced-transcription working files (regenerable; per-machine)
+.transcription-test/
+.triage.json
+.repass-candidates.json
+
 # wrangler files
 .wrangler
 .dev.vars*
