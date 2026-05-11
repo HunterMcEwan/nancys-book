@@ -1,11 +1,13 @@
 <#
 .SYNOPSIS
-  Preflight check: detect People-list slug collisions across all page frontmatter.
+  Preflight check: detect People- and Places-list slug collisions across all
+  page frontmatter.
 
 .DESCRIPTION
-  Eleventy generates one /people/<slug>/index.html per unique person. If two
-  distinct names slugify to the same value, the build fails with "Output
-  conflict: multiple input files are writing to ./_site/people/<slug>/index.html".
+  Eleventy generates one /people/<slug>/index.html and one /places/<slug>/index.html
+  per unique entry. If two distinct entries slugify to the same value, the build
+  fails with "Output conflict: multiple input files are writing to
+  ./_site/<people|places>/<slug>/index.html".
 
   This script mirrors Eleventy's slugify() exactly:
     1. NFD-normalize the string.
@@ -14,12 +16,16 @@
     4. Replace any run of non-[a-z0-9] with a single hyphen.
     5. Trim leading/trailing hyphens.
 
-  We then walk every src/books/*/pages/*.md, extract the people: list, slugify
-  each name, and report any slug that maps to multiple distinct names.
+  We walk every src/books/*/pages/*.md, extract the people: and places: lists,
+  slugify each entry, and report any slug that maps to multiple distinct names.
 
-  Earlier inline preflights skipped the NFD/combining-mark step, so a
-  Margaret Serre / Margaret Serré pair slipped through and broke the build.
-  This script encodes the correct algorithm in one place.
+  Past collision classes the inline preflight has missed:
+    - Margaret Serre / Margaret Serré        (NFD diacritic strip)
+    - Anne O. Bryan / Anne O'Bryan           (apostrophe vs period)
+    - Wm / Wm.                               (honorific period)
+    - Mulberry plantation / Mulberry Plantation  (capitalization)
+    - Walhalla SC / Walhalla, SC             (punctuation)
+  All collapse to one slug because Eleventy strips all non-alphanumerics.
 
 .EXAMPLE
   pwsh scripts/check-people-slugs.ps1
@@ -35,49 +41,62 @@ function Get-EleventySlug {
   return ($hyphenated -replace '^-+|-+$','')
 }
 
-$slugMap = @{}
-
-$pageFiles = Get-ChildItem -Path "src/books" -Recurse -Filter "*.md" -File
-
-foreach ($file in $pageFiles) {
-  $lines = Get-Content -LiteralPath $file.FullName
-  $inFrontmatter = $false
-  $inPeople = $false
-  $frontmatterCount = 0
-  foreach ($line in $lines) {
-    if ($line -match '^---\s*$') {
-      $frontmatterCount++
-      if ($frontmatterCount -eq 1) { $inFrontmatter = $true; continue }
-      if ($frontmatterCount -eq 2) { break }
-    }
-    if (-not $inFrontmatter) { continue }
-    if ($line -match '^people:\s*$') { $inPeople = $true; continue }
-    if ($inPeople) {
-      if ($line -match '^\s*-\s+(.+?)\s*$') {
-        $name = $Matches[1].Trim()
-        $name = $name -replace '^["'']|["'']$',''
-        $slug = Get-EleventySlug -Str $name
-        if (-not $slugMap.ContainsKey($slug)) {
-          $slugMap[$slug] = New-Object System.Collections.Generic.HashSet[string]
+function Find-Collisions {
+  param(
+    [string]$ListKey,
+    [System.IO.FileInfo[]]$Files
+  )
+  $slugMap = @{}
+  foreach ($file in $Files) {
+    $lines = Get-Content -LiteralPath $file.FullName
+    $inFrontmatter = $false
+    $inList = $false
+    $frontmatterCount = 0
+    foreach ($line in $lines) {
+      if ($line -match '^---\s*$') {
+        $frontmatterCount++
+        if ($frontmatterCount -eq 1) { $inFrontmatter = $true; continue }
+        if ($frontmatterCount -eq 2) { break }
+      }
+      if (-not $inFrontmatter) { continue }
+      if ($line -match "^${ListKey}:\s*$") { $inList = $true; continue }
+      if ($inList) {
+        if ($line -match '^\s*-\s+(.+?)\s*$') {
+          $name = $Matches[1].Trim()
+          $name = $name -replace '^["'']|["'']$',''
+          $slug = Get-EleventySlug -Str $name
+          if (-not $slugMap.ContainsKey($slug)) {
+            $slugMap[$slug] = New-Object System.Collections.Generic.HashSet[string]
+          }
+          $null = $slugMap[$slug].Add($name)
+        } elseif ($line -match '^[a-zA-Z_]+:') {
+          $inList = $false
         }
-        $null = $slugMap[$slug].Add($name)
-      } elseif ($line -match '^[a-zA-Z_]+:') {
-        $inPeople = $false
       }
     }
   }
+  return $slugMap
 }
 
-$collisions = $slugMap.GetEnumerator() | Where-Object { $_.Value.Count -gt 1 }
+$pageFiles = Get-ChildItem -Path "src/books" -Recurse -Filter "*.md" -File
 
-if ($collisions.Count -eq 0) {
-  Write-Output "CLEAN: $($slugMap.Count) unique people slugs across $($pageFiles.Count) pages."
-  exit 0
-} else {
-  Write-Output "COLLISIONS FOUND ($($collisions.Count)):"
-  foreach ($entry in $collisions) {
-    $names = ($entry.Value | Sort-Object) -join " | "
-    Write-Output "  $($entry.Key)  <-  $names"
+$exitCode = 0
+
+foreach ($listKey in @('people', 'places')) {
+  $slugMap = Find-Collisions -ListKey $listKey -Files $pageFiles
+  $collisions = @($slugMap.GetEnumerator() | Where-Object { $_.Value.Count -gt 1 })
+
+  $label = $listKey.Substring(0,1).ToUpper() + $listKey.Substring(1)
+  if ($collisions.Count -eq 0) {
+    Write-Output "${label}: CLEAN — $($slugMap.Count) unique slugs across $($pageFiles.Count) pages."
+  } else {
+    Write-Output "${label}: COLLISIONS FOUND ($($collisions.Count)):"
+    foreach ($entry in $collisions) {
+      $names = ($entry.Value | Sort-Object) -join " | "
+      Write-Output "  $($entry.Key)  <-  $names"
+    }
+    $exitCode = 1
   }
-  exit 1
 }
+
+exit $exitCode
