@@ -23,8 +23,12 @@ title: Album of Memories, Book 1
     {%- for page in collections.pagesByBook[1] -%}
       <li>
         <a href="{{ page.url }}">
-          <span class="book-pages__num">P. {{ page.data.pageNumber }}</span>
-          <span>
+          <img class="book-pages__thumb"
+               src="/books/book-001/images/thumb/{{ page.data.image }}"
+               alt=""
+               loading="lazy" />
+          <span class="book-pages__info">
+            <span class="book-pages__num">P. {{ page.data.pageNumber }}</span>
             <span class="book-pages__title">{{ page.data.title }}</span>
             {%- if page.data.date_range -%}
               <span class="book-pages__meta">{{ page.data.date_range }}</span>

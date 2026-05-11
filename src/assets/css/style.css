@@ -348,19 +348,33 @@ li { margin-bottom: var(--space-1); }
   border-color: var(--color-accent);
   background: var(--color-paper);
 }
+.book-pages__thumb {
+  flex-shrink: 0;
+  width: 5rem;
+  height: 6.5rem;
+  object-fit: cover;
+  object-position: top center;
+  background: var(--color-paper);
+  border: 1px solid var(--color-paper-rule);
+  display: block;
+}
+.book-pages__info {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
 .book-pages__num {
   font-family: var(--font-mono);
-  font-size: 0.75rem;
+  font-size: 0.7rem;
   color: var(--color-accent);
-  flex-shrink: 0;
-  padding-top: 0.2em;
   letter-spacing: 0.1em;
+  margin-bottom: 0.3em;
 }
 .book-pages__title {
   font-size: 1.05rem;
   font-weight: 500;
   line-height: 1.3;
-  margin: 0 0 0.2em;
+  margin: 0 0 0.3em;
 }
 .book-pages__meta {
   font-family: var(--font-mono);
