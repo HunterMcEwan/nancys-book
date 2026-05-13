@@ -39,7 +39,13 @@ def main():
             if in_people:
                 m = re.match(r'^\s\s-\s+(.+?)\s*$', line)
                 if m:
-                    slug_to_names[slugify(m.group(1))].add(m.group(1))
+                    name = m.group(1)
+                    # Strip outer YAML quote-wrapping so '"Foo"' and 'Foo' don't
+                    # appear as different names (the YAML parser dedupes them).
+                    if (len(name) >= 2 and name[0] == name[-1] == '"') or \
+                       (len(name) >= 2 and name[0] == name[-1] == "'"):
+                        name = name[1:-1]
+                    slug_to_names[slugify(name)].add(name)
                 elif not line.startswith(' '):
                     in_people = False
 
