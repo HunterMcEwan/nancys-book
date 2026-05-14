@@ -44,6 +44,15 @@ HISTORICAL-CONTEXT.md
 
 # Scratch file used to pass multi-line commit messages to git
 .commit-msg.txt
+.git_commit_msg.tmp
+
+# Per-page enhanced-transcription crop intermediates (regenerable)
+tmp_enh/
+
+# Misc analysis scratch
+analysis_output.txt
+pagesByPerson.xml
+peopleFreq.xml
 
 # wrangler files
 .wrangler
