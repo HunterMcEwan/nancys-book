@@ -17,4 +17,9 @@ module.exports = {
     title: "Photo Memories",
     unit: "item",
   },
+  4: {
+    label: "Appendix",
+    title: "Appendix & Supporting Documents",
+    unit: "document",
+  },
 };

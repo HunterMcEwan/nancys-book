@@ -1,0 +1,8 @@
+{
+  "layout": "layouts/page.njk",
+  "permalink": "/books/book-004/{{ pageNumber | padPage }}/",
+  "tags": ["page", "book-4"],
+  "eleventyComputed": {
+    "book": 4
+  }
+}

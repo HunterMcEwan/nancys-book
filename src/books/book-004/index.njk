@@ -1,0 +1,43 @@
+---
+layout: layouts/base.njk
+permalink: /books/book-004/
+title: Appendix & Supporting Documents
+---
+
+<div class="index-page">
+  <nav class="page-breadcrumb" aria-label="Breadcrumb">
+    <a href="/books/">Books</a>
+    <span aria-hidden="true">›</span>
+    <span aria-current="page">Appendix</span>
+  </nav>
+
+  <h1>Appendix &amp; Supporting Documents</h1>
+  <p class="index-page__lede">
+    Documents not part of the original bound albums but referenced or
+    implied within them — wills, deeds, news articles, and other archival
+    materials that fill in the family record. Each item is sourced from a
+    public archive and credited at the foot of its transcription.
+  </p>
+
+  <ul class="book-pages">
+    {%- for page in collections.pagesByBook[4] -%}
+      <li>
+        <a href="{{ page.url }}">
+          <img class="book-pages__thumb"
+               src="/books/book-004/images/thumb/{{ page.data.image }}"
+               alt=""
+               loading="lazy" />
+          <span class="book-pages__info">
+            <span class="book-pages__num">Doc. {{ page.data.pageNumber }}</span>
+            <span class="book-pages__title">{{ page.data.title }}</span>
+            {%- if page.data.date_range -%}
+              <span class="book-pages__meta">{{ page.data.date_range }}</span>
+            {%- endif -%}
+          </span>
+        </a>
+      </li>
+    {%- else -%}
+      <li><em>No documents transcribed yet.</em></li>
+    {%- endfor -%}
+  </ul>
+</div>
