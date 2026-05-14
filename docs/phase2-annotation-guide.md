@@ -103,6 +103,15 @@ flow. Default to end-of-page.
   honor her mother" is a guess. State facts; let readers infer.
 - **Editorial brackets only.** Do not modify the original transcribed
   text inside the annotation. Don't rewrite blockquotes.
+- **No methodology metadata in user-facing content.** Anything in the
+  `notes:` field or in the body's italic-bracket annotations is shown
+  to readers. Don't include phrases like "Phase-2 (2026-05-13):",
+  "full-resolution re-read", "rotated re-scan", "crop+rotate", or
+  internal pass names — those are implementation details. State the
+  finding directly: instead of *"Phase-2 (2026-05-14) margin re-scan
+  recovered the full note"*, just say *"The pencilled marginal note
+  reads:"* and quote it. Reasoning about how you arrived at the
+  reading belongs in the commit message, not on the published page.
 
 ## Linking
 

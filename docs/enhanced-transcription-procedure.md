@@ -146,6 +146,33 @@ date the enhanced pass was run, and a one-line note on the most
 significant corrections found (this is searchable history when we
 later want to know whether a given page has been revised).
 
+## Keep methodology metadata out of user-facing content
+
+The `notes:` frontmatter field and any body annotations are shown to
+readers of the published site. State findings directly; **do not**
+narrate the pass itself. Avoid phrases like:
+
+- *"Phase-2 (2026-05-13): full-resolution re-read confirms..."*
+- *"Margin re-scan (2026-05-14, crop+rotate technique) recovered..."*
+- *"Phase-1 had X; corrected to Y on the enhanced pass."*
+
+Those are implementation details. The reader doesn't care which pass
+produced which reading or what cropping technique made it legible —
+they want the cleanest current rendering of what the page says. Save
+the methodology, dates, and pass-name framing for:
+
+- The commit message,
+- The `data/enhanced-pages.csv` log,
+- `FAMILY-NOTES.md` (private notebook), or
+- This procedure document.
+
+Instead of *"Phase-2 margin re-scan revealed the husband's initial as
+J."* write *"The husband's initial is J."* and quote the marginalia
+directly. If a discrepancy with an earlier reading is worth flagging
+because the published page itself records both, frame it editorially
+("the source's '30th' conflicts with the dates given on the same
+line") rather than as a pass-to-pass diff.
+
 ## Cost
 
 Per page: roughly 5 vision calls (1 layout + 4 regions) and 100k–200k
