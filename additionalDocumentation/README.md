@@ -29,5 +29,9 @@ a new supporting document:
 
 | File                    | Source page              | Site document                            |
 | ----------------------- | ------------------------ | ---------------------------------------- |
-| `939L-JXS1-PB.jpg`      | Will Book A, p. 198      | book-004/001 — Will of Christopher Fitz Simons (body) |
-| `939L-JXS1-B7.jpg`      | Will Book A, p. 199      | book-004/002 — Will of Christopher Fitz Simons (closing, witnesses, probate) |
+| `939L-JXS1-PB.jpg`      | Will Book A, p. 198      | book-004/001 — Will of Christopher Fitz Simons (the emigrant's uncle, 1782) — body |
+| `939L-JXS1-B7.jpg`      | Will Book A, p. 199      | book-004/002 — Will of Christopher Fitz Simons — closing, witnesses, probate |
+| `939L-J49B-9M.jpg`      | Will Book B, p. 963      | book-004/003 — Will of Paul Pritchard (1791) — body opens |
+| `939L-J49B-FM.jpg`      | Will Book B, p. 964      | book-004/004 — Will of Paul Pritchard — bequests to children |
+| `939L-J49B-G2.jpg`      | Will Book B, p. 965      | book-004/005 — Will of Paul Pritchard — pecuniary legacies and partnership clauses |
+| `939L-J49Y-KX.jpg`      | Will Book B, p. 966      | book-004/006 — Will of Paul Pritchard — closing, witnesses, probate |
