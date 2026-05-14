@@ -36,3 +36,4 @@ a new supporting document:
 | `939L-J49B-G2.jpg`      | Will Book B, p. 965      | book-004/005 — Will of Paul Pritchard — pecuniary legacies and partnership clauses |
 | `939L-J49Y-KX.jpg`      | Will Book B, p. 966      | book-004/006 — Will of Paul Pritchard — closing, witnesses, probate |
 | `939L-JLSM-7L.jpg`      | Will Book G, p. 1130     | book-004/007 — Will of Christopher Fitzsimons (2nd, 1831) — single page, naming Elizabeth Porcher Fitzsimons sole executrix |
+| `939L-JXSZ-WY.jpg`      | Will Book H, p. 834      | book-004/008 — Will of John Stoney (1838) — single page, naming wife Elizabeth and sons P. G. and C. F. Stoney executors |
