@@ -37,3 +37,5 @@ a new supporting document:
 | `939L-J49Y-KX.jpg`      | Will Book B, p. 966      | book-004/006 — Will of Paul Pritchard — closing, witnesses, probate |
 | `939L-JLSM-7L.jpg`      | Will Book G, p. 1130     | book-004/007 — Will of Christopher Fitzsimons (2nd, 1831) — single page, naming Elizabeth Porcher Fitzsimons sole executrix |
 | `939L-JXSZ-WY.jpg`      | Will Book H, p. 834      | book-004/008 — Will of John Stoney (1838) — single page, naming wife Elizabeth and sons P. G. and C. F. Stoney executors |
+| `image.jpg`             | Inventory Bk, pp. 302-303 | book-004/009 — Inventory of William Valentine of Charleston (1790), with Christopher Fitzsimons named Executor — also contains unrelated inventories of Joseph Harvey (Oct 1790) and Robert Smith |
+| `939L-JJT7-L.jpg`       | Inventory Bk 1836-37, entries 25-26 | book-004/010 — Two consecutive Charleston probate inventories: Charles M. FitzSimons (Dec 1836, Robert Brown admin) and Charles Mark Fitzsimons "State Constable" (Jan 1837, Margaret C. Fitzsimons adminx) |
