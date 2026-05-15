@@ -92,6 +92,24 @@ notes: "Unidentified. Possibly a FitzSimons or Walker descendant. Tintype, ca. 1
 This keeps the archive complete — every scanned page has a corresponding
 entry, even when there's nothing written to read.
 
+## Keep methodology out of user-facing content
+
+The `notes:` field and body annotations are shown to readers of the published
+site. State findings directly. Don't narrate the transcription process or
+which pass produced what — readers don't know what "phase 1", "phase 2",
+"enhanced pass", "first pass", or "on re-read" mean, and shouldn't have to.
+
+- **Bad:** *"Phase-2 enhanced pass confirmed the captions; no corrections required."*
+- **Good:** Just write the cleanest current rendering and let the page speak.
+- **Bad:** *"Phase-1 had 'Lydia C. Bullard'; corrected to 'Lydia C. Gaillard' on the enhanced pass."*
+- **Good:** *"The recipient is **Lydia C. Gaillard**."*
+
+If a discrepancy is worth surfacing because the page itself records both
+readings, frame it editorially ("the source's '30th' conflicts with the dates
+on the same line"), not as a pass-to-pass diff. Save methodology, dates, and
+pass-name framing for commit messages, `data/enhanced-pages.csv`, and
+`FAMILY-NOTES.md`.
+
 ## When in doubt
 
 Err toward **including more context in editorial notes** rather than less.
