@@ -53,6 +53,7 @@ tmp_enh/
 analysis_output.txt
 pagesByPerson.xml
 peopleFreq.xml
+leaky_files.txt
 
 # wrangler files
 .wrangler
