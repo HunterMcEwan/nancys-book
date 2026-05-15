@@ -61,6 +61,57 @@ PATTERNS = [
         ),
         "",
     ),
+    # Pattern B1: leading "Phase 2: " in editorial bracket (no "enhanced pass")
+    (
+        "leading 'Phase N:' inside editorial bracket",
+        re.compile(r"\*\[Phase[-\s]?\d\s*:\s*", re.IGNORECASE),
+        "*[",
+    ),
+    # Pattern B2: "Phase-2 corrections:" header inside a notes block / line
+    (
+        "'Phase-N corrections:' heading",
+        re.compile(r"Phase[-\s]?\d\s+corrections?\s*:\s*", re.IGNORECASE),
+        "",
+    ),
+    # Pattern B3: inline "(phase-1 fabrication[s])" / "(phase-N reading)" parentheticals
+    (
+        "parenthetical '(phase-N fabrication/reading/etc.)'",
+        re.compile(
+            r"\s*\((?:both\s+)?phase[-\s]?\d\s+(?:fabrications?|reading|guess(?:es)?|error(?:s)?|brackets?)\)",
+            re.IGNORECASE,
+        ),
+        "",
+    ),
+    # Pattern B4: trailing/inline "as Phase 1 stated/had it/etc."
+    (
+        "inline 'as Phase N stated/had it/read it/has it'",
+        re.compile(
+            r",?\s+as\s+phase[-\s]?\d\s+(?:stated|had\s+it|read\s+it|has\s+it|did)",
+            re.IGNORECASE,
+        ),
+        "",
+    ),
+    # Pattern B5: "many phase-1 brackets" → "many uncertain readings"
+    (
+        "'phase-N brackets' substitution",
+        re.compile(r"phase[-\s]?\d\s+brackets", re.IGNORECASE),
+        "uncertain readings",
+    ),
+    # Pattern B6: trailing/inline "the Phase 1 transcription/draft was/is X"
+    (
+        "'the Phase N transcription is...' phrasing",
+        re.compile(
+            r"\s*the\s+phase[-\s]?\d\s+(?:transcription|draft|reading)\s+(?:is|was)\s+",
+            re.IGNORECASE,
+        ),
+        " the earlier transcription was ",
+    ),
+    # Pattern B7: parenthetical "(Phase 1)" / "(Phase-1)" / "(Phase 2)" qualifier
+    (
+        "bare parenthetical '(Phase N)' qualifier",
+        re.compile(r"\s*\(phase[-\s]?\d\)", re.IGNORECASE),
+        "",
+    ),
 ]
 
 
@@ -83,6 +134,8 @@ def process_file(p: Path, write: bool = False) -> tuple[int, list[str]]:
     if not applied:
         return (0, [])
     # Only run cleanup on lines that changed, to avoid churning unrelated content.
+    # Cleanup preserves leading whitespace (critical for YAML block scalars
+    # where each line carries a fixed indent — collapsing it produces invalid YAML).
     old_lines = text.splitlines(keepends=True)
     new_lines = new_text.splitlines(keepends=True)
     if len(old_lines) == len(new_lines):
@@ -91,9 +144,15 @@ def process_file(p: Path, write: bool = False) -> tuple[int, list[str]]:
             if old == new:
                 cleaned.append(new)
                 continue
-            polished = re.sub(r" {2,}", " ", new)
-            polished = re.sub(r"\.\s*\.+", ".", polished)
-            cleaned.append(polished)
+            # Split into leading whitespace + body + trailing newline
+            m = re.match(r"^(\s*)(.*?)(\r?\n?)$", new, re.DOTALL)
+            if m:
+                leading, body, trailing = m.group(1), m.group(2), m.group(3)
+                body = re.sub(r" {2,}", " ", body)
+                body = re.sub(r"\.\s*\.+", ".", body)
+                cleaned.append(leading + body + trailing)
+            else:
+                cleaned.append(new)
         new_text = "".join(cleaned)
     if write and new_text != text:
         p.write_text(new_text, encoding="utf-8", newline="\n")
