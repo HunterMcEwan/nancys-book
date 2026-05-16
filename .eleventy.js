@@ -112,6 +112,11 @@ module.exports = function (eleventyConfig) {
     return idx >= 0 && idx < sameBook.length - 1 ? sameBook[idx + 1] : null;
   });
 
+  // Sort a collection by frontmatter `order` field (ascending)
+  eleventyConfig.addFilter("sortByOrder", (collection) => {
+    return [...collection].sort((a, b) => (a.data.order || 0) - (b.data.order || 0));
+  });
+
   // Format an array of strings as a comma-separated list
   eleventyConfig.addFilter("commaList", (arr) => {
     if (!arr || !arr.length) return "";

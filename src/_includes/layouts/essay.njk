@@ -1,0 +1,29 @@
+---
+layout: layouts/base.njk
+---
+
+<article class="essay">
+
+  <nav class="page-breadcrumb" aria-label="Breadcrumb">
+    <a href="/essays/">Essays</a>
+    <span aria-hidden="true">›</span>
+    <span aria-current="page">{{ title }}</span>
+  </nav>
+
+  <header class="essay-header">
+    <p class="essay-header__eyebrow">Essay</p>
+    <h1 class="essay-header__title">{{ title }}</h1>
+    {% if summary %}
+      <p class="essay-header__summary">{{ summary }}</p>
+    {% endif %}
+  </header>
+
+  <div class="essay-body">
+    {{ content | safe }}
+  </div>
+
+  <footer class="essay-footer">
+    <a href="/essays/">← All essays</a>
+  </footer>
+
+</article>

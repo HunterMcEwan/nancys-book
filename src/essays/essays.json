@@ -1,0 +1,8 @@
+{
+  "layout": "layouts/essay.njk",
+  "permalink": "/essays/{{ slug }}/",
+  "tags": ["essay"],
+  "eleventyComputed": {
+    "title": "{{ title }}"
+  }
+}

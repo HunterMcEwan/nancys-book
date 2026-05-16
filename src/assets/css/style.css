@@ -353,6 +353,203 @@ li { margin-bottom: var(--space-1); }
   color: var(--color-ink-faded);
 }
 
+/* ─── Essays index and essay pages ──────────────────────────── */
+
+.essays-index__header {
+  max-width: var(--measure-prose);
+  margin: 0 auto var(--space-5);
+  text-align: center;
+}
+.essays-index__eyebrow {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--color-accent);
+  margin-bottom: var(--space-3);
+}
+.essays-index__header h1 {
+  font-size: clamp(2rem, 4.5vw, 3rem);
+  font-weight: 500;
+  font-style: italic;
+  margin-bottom: var(--space-3);
+}
+.essays-index__lede {
+  color: var(--color-ink-soft);
+  font-size: 1.05rem;
+}
+
+.essays-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  max-width: var(--measure-page);
+  margin-left: auto;
+  margin-right: auto;
+  counter-reset: essay;
+}
+.essays-list__item {
+  border-top: 1px solid var(--color-paper-rule);
+  margin: 0;
+}
+.essays-list__item:last-child {
+  border-bottom: 1px solid var(--color-paper-rule);
+}
+.essays-list__item a {
+  display: block;
+  padding: var(--space-4) var(--space-3);
+  text-decoration: none;
+  color: var(--color-ink);
+  transition: background 0.15s ease;
+  position: relative;
+}
+.essays-list__item a:hover {
+  background: var(--color-paper-deep);
+  color: var(--color-ink);
+}
+.essays-list__item a::before {
+  counter-increment: essay;
+  content: counter(essay, decimal-leading-zero);
+  position: absolute;
+  left: var(--space-3);
+  top: var(--space-4);
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  letter-spacing: 0.15em;
+  color: var(--color-accent);
+}
+.essays-list__title {
+  font-size: 1.35rem;
+  font-style: italic;
+  font-weight: 500;
+  margin: 0 0 var(--space-2);
+  padding-left: 3rem;
+}
+.essays-list__summary {
+  color: var(--color-ink-soft);
+  font-size: 1rem;
+  margin: 0;
+  padding-left: 3rem;
+  line-height: 1.55;
+}
+
+.essay {
+  max-width: var(--measure-page);
+  margin: 0 auto;
+}
+.essay-header {
+  max-width: var(--measure-prose);
+  margin: 0 auto var(--space-5);
+  text-align: center;
+  padding-top: var(--space-3);
+}
+.essay-header__eyebrow {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--color-accent);
+  margin-bottom: var(--space-3);
+}
+.essay-header__title {
+  font-size: clamp(2rem, 4.5vw, 3rem);
+  font-weight: 500;
+  font-style: italic;
+  margin-bottom: var(--space-3);
+  line-height: 1.15;
+}
+.essay-header__summary {
+  font-size: 1.1rem;
+  color: var(--color-ink-soft);
+  font-style: italic;
+  margin: 0 auto;
+}
+
+.essay-body {
+  max-width: var(--measure-prose);
+  margin: 0 auto;
+  font-size: 1.02rem;
+  line-height: 1.7;
+  color: var(--color-ink-soft);
+}
+.essay-body p:first-of-type::first-letter {
+  font-size: 3.2rem;
+  font-weight: 500;
+  float: left;
+  line-height: 0.9;
+  padding: 0.1em 0.1em 0 0;
+  color: var(--color-accent);
+  font-family: var(--font-serif);
+}
+.essay-body p {
+  margin-bottom: var(--space-3);
+}
+.essay-body p + p {
+  text-indent: 1.5em;
+}
+.essay-body h2 {
+  font-size: 1.35rem;
+  font-style: italic;
+  font-weight: 500;
+  color: var(--color-ink);
+  margin: var(--space-5) 0 var(--space-2);
+}
+.essay-body h2::before {
+  content: "§ ";
+  color: var(--color-accent);
+  font-style: normal;
+  font-weight: 400;
+}
+.essay-body h3 {
+  font-size: 1.1rem;
+  font-style: italic;
+  font-weight: 500;
+  color: var(--color-ink);
+  margin: var(--space-4) 0 var(--space-2);
+}
+.essay-body a {
+  color: var(--color-link);
+  text-decoration: none;
+  border-bottom: 1px solid var(--color-paper-rule);
+  transition: border-color 0.15s ease, color 0.15s ease;
+}
+.essay-body a:hover {
+  color: var(--color-accent);
+  border-bottom-color: var(--color-accent);
+}
+.essay-body blockquote {
+  font-style: italic;
+  border-left: 2px solid var(--color-accent);
+  background: var(--color-paper-deep);
+}
+.essay-body em {
+  color: var(--color-ink);
+}
+
+.essay-footer {
+  max-width: var(--measure-prose);
+  margin: var(--space-5) auto 0;
+  padding-top: var(--space-3);
+  border-top: 1px solid var(--color-paper-rule);
+  font-family: var(--font-mono);
+  font-size: 0.85rem;
+}
+
+/* "Read more" link inline within a homepage summary paragraph */
+.home-summary__readmore {
+  display: inline-block;
+  margin-left: 0.4em;
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+  letter-spacing: 0.04em;
+  color: var(--color-accent) !important;
+  border-bottom: none !important;
+  text-transform: uppercase;
+}
+.home-summary__readmore:hover {
+  color: var(--color-link) !important;
+}
+
 /* ─── Index pages (Books, People, Places) ───────────────────── */
 
 .index-page h1 {

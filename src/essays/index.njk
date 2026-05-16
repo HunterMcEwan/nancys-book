@@ -1,0 +1,34 @@
+---
+layout: layouts/base.njk
+permalink: /essays/
+title: Essays
+eleventyExcludeFromCollections: true
+---
+
+<section class="essays-index">
+
+  <header class="essays-index__header">
+    <p class="essays-index__eyebrow">Essays</p>
+    <h1>Threads through the archive</h1>
+    <p class="essays-index__lede">
+      The pages of these scrapbooks are best read in their own running order,
+      but several threads of family history cross multiple volumes and
+      decades. These essays trace those threads — pulling together the
+      sources that document each one and putting them in historical context.
+    </p>
+  </header>
+
+  <ol class="essays-list">
+    {%- for essay in collections.essay | sortByOrder -%}
+      <li class="essays-list__item">
+        <a href="{{ essay.url }}">
+          <h2 class="essays-list__title">{{ essay.data.title }}</h2>
+          {% if essay.data.summary %}
+            <p class="essays-list__summary">{{ essay.data.summary }}</p>
+          {% endif %}
+        </a>
+      </li>
+    {%- endfor -%}
+  </ol>
+
+</section>
