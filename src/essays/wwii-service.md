@@ -26,7 +26,7 @@ The portrait dates from his captaincy, somewhere in the window 1942–1945. That
 
 The most narratively complete of the three in-law servicemen is the compiler's middle son-in-law, Dr. Robert Corbell Jr. — "Bob" — married to her middle daughter Emma Dee Walker. He appears not in a uniform portrait but obliquely, as the father of the small boy in the five snapshots of Robert Lawrence Corbell III mounted on [Book 2, p192](/books/book-002/192/). Beneath the photographs the compiler wrote out, in pencil, the only contemporaneous service narrative the album contains:
 
-> Ille & Bob lived in Richmond until Bob finished medical school. He then interned in Norwalk Conn. — He finished his internship in June 1941 — and went into service. He was stationed at Ft. Belvoir & then at Ft. Benning. He joined the 82nd air borne.
+> Dee & Bob lived in Richmond until Bob finished medical school. He then interned in Norwalk Conn. — He finished his internship in June 1941 — and went into service. He was stationed at Ft. Belvoir & then at Ft. Benning. He joined the 82nd air borne.
 
 The narrative is precise and economical: a Richmond residence during medical school; a Connecticut internship completed in June 1941; entry into service that summer; posts at Fort Belvoir, Virginia, and Fort Benning, Georgia; assignment to the 82nd Airborne Division. The accompanying snapshots fix the family's geography in those same years — *R. L. C. III  NORWALK CONN. 1942*, *R. L. C. III + J. P. W. 1942 Portsmouth Va*, *R. L. Corbell III 1st Xmas 1941* — the small boy moving with his parents through the wartime postings.
 
