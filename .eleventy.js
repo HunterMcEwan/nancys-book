@@ -123,6 +123,13 @@ module.exports = function (eleventyConfig) {
     return arr.join(", ");
   });
 
+  // Render a string as Markdown (used for the AI Notes panel on each page,
+  // whose source comes from YAML frontmatter and is not auto-rendered).
+  eleventyConfig.addFilter("markdown", (str) => {
+    if (!str) return "";
+    return md.render(String(str));
+  });
+
   return {
     dir: {
       input: "src",
