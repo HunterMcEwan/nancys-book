@@ -291,6 +291,19 @@ li { margin-bottom: var(--space-1); }
   color: var(--color-accent);
   border-bottom-color: var(--color-accent);
 }
+/* Essay-link wrappers on h3 headings: heading stays unadorned until hover,
+   when it picks up the accent color and a dashed underline. Defined here
+   (after `.home-summary a`) so its border-bottom override wins. */
+.home-summary__essay-link,
+.home-summary h3 a.home-summary__essay-link {
+  color: inherit;
+  border-bottom: 1px dashed transparent;
+}
+.home-summary__essay-link:hover,
+.home-summary h3 a.home-summary__essay-link:hover {
+  color: var(--color-accent);
+  border-bottom-color: var(--color-accent);
+}
 .home-summary__close {
   margin-top: var(--space-5);
   padding-top: var(--space-4);
