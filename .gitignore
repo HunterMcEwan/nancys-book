@@ -49,6 +49,10 @@ HISTORICAL-CONTEXT.md
 # Per-page enhanced-transcription crop intermediates (regenerable)
 tmp_enh/
 
+# Python bytecode (one-off migration scripts under scripts/)
+__pycache__/
+*.pyc
+
 # Misc analysis scratch
 analysis_output.txt
 pagesByPerson.xml
