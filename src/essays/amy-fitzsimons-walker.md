@@ -26,7 +26,7 @@ The Lowcountry photographs of her at fourteen and sixteen, mounted together at [
 
 ## A Walker, a railroad, three children
 
-She married **James Pickens Walker Sr.** (1883–1960) about 1911. The album preserves a group photograph at [Book 2, p52](/books/book-002/052/) captioned in her hand "James Pickens Walker — B. + O. Engineers. With B. + O. — 1903–1906," alongside a small print of his mother Mrs. S. C. Walker with his sister Anna in a flowering garden. The Walkers were a railroad family, and the household moved with J. P. Walker Sr.'s Atlantic Coast Line career: Charleston, then Savannah, and finally Jacksonville, where they arrived in 1933 and where he served as a news editor of *The Florida Times-Union*.
+She married **James Pickens Walker Sr.** (1883–1960) on 20 October 1908. The album preserves a group photograph at [Book 2, p52](/books/book-002/052/) captioned in her hand "James Pickens Walker — B. + O. Engineers. With B. + O. — 1903–1906," alongside a small print of his mother Mrs. S. C. Walker with his sister Anna in a flowering garden. The Walkers were a railroad family, and the household moved with J. P. Walker Sr.'s Atlantic Coast Line career: Charleston, then Savannah, and finally Jacksonville, where they arrived in 1933 and where he served as a news editor of *The Florida Times-Union*.
 
 There were three children. James Pickens Walker Jr. — "Bo" or "Pickens" — was born in 1912 and predeceased his mother in January 1969. Emma Dee Walker Corbell — "Dee" — was born on 18 October 1915. Mary Ann Walker McEwan, the youngest, was born in 1918 and would settle in Orlando.
 

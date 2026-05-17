@@ -1,12 +1,12 @@
 ---
 slug: walker-branch
 title: "The Walker branch: from Philippi, West Virginia, to the Atlantic Coast Line"
-summary: "Amy FitzSimons's c. 1911 marriage brought Union-side Appalachia into the Lowcountry family. James Pickens Walker Sr.'s Atlantic Coast Line career then routed his children through Charleston, Savannah, and Jacksonville — a railroader's life along the Southern seaboard."
+summary: "Amy FitzSimons's October 1908 marriage brought Union-side Appalachia into the Lowcountry family. James Pickens Walker Sr.'s Atlantic Coast Line career then routed his children through Charleston, Savannah, and Jacksonville — a railroader's life along the Southern seaboard."
 date: 2026-05-16
 order: 5
 ---
 
-The Charleston into which Amy Ann Perry FitzSimons was born in February 1888 was a city still rehearsing its Confederate past — St. Cecilia balls, Hampton Legion adjutants, the long tail of an antebellum gentry that had not quite agreed to lose. When she married around 1911, the man she took into the family did not share that grammar. **James Pickens Walker Sr.** — "Jamie" in his college pictures, "Puck" in family letters — was a West Virginian. His state had been carved out of Virginia in 1863 to remain in the Union; his father had enlisted at eighteen, "so preserve the Union." The wedding was a small private armistice. The branch it opened runs through a different geography from the rest of this archive: mountain Appalachia, a Virginia men's college, and four decades on the Atlantic Coast Line Railroad.
+The Charleston into which Amy Ann Perry FitzSimons was born in February 1888 was a city still rehearsing its Confederate past — St. Cecilia balls, Hampton Legion adjutants, the long tail of an antebellum gentry that had not quite agreed to lose. When she married on 20 October 1908, the man she took into the family did not share that grammar. **James Pickens Walker Sr.** — "Jamie" in his college pictures, "Puck" in family letters — was a West Virginian. His state had been carved out of Virginia in 1863 to remain in the Union; his father had enlisted at eighteen, "so preserve the Union." The wedding was a small private armistice. The branch it opened runs through a different geography from the rest of this archive: mountain Appalachia, a Virginia men's college, and four decades on the Atlantic Coast Line Railroad.
 
 ## Out of the West Virginia hills
 
