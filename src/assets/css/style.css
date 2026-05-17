@@ -291,13 +291,15 @@ li { margin-bottom: var(--space-1); }
   color: var(--color-accent);
   border-bottom-color: var(--color-accent);
 }
-/* Essay-link wrappers on h3 headings: heading stays unadorned until hover,
-   when it picks up the accent color and a dashed underline. Defined here
-   (after `.home-summary a`) so its border-bottom override wins. */
+/* Essay-link wrappers on h3 headings: a dashed underline marks the
+   heading as clickable (distinct from inline body links, which use a
+   solid underline). Heading color stays in the surrounding text tone
+   at rest, picking up the accent color on hover. Defined after
+   `.home-summary a` so the dashed border-bottom override wins. */
 .home-summary__essay-link,
 .home-summary h3 a.home-summary__essay-link {
   color: inherit;
-  border-bottom: 1px dashed transparent;
+  border-bottom: 1px dashed var(--color-paper-rule);
 }
 .home-summary__essay-link:hover,
 .home-summary h3 a.home-summary__essay-link:hover {
