@@ -447,12 +447,11 @@ const people = [
     spouse: "jpw_sr",
     x: 880, y: ROW.gen_1, tilt: 1.5,
   },
-  // Hunter Perry — Amy's brother who died on her 7th birthday; the
-  // user's namesake. Rendered as a small commemoration card.
+  // Dunkin Perry FitzSimons — Amy's brother who died on her 7th
+  // birthday. Rendered as a small commemoration card.
   {
-    id: "hunter_perry_fs",
-    name: "Hunter Perry FitzSimons",
-    nickname: "Hunkin",
+    id: "dunkin_perry_fs",
+    name: "Dunkin Perry FitzSimons",
     dates: "1893–1895",
     note: "d. of diphtheria on Amy's 7th birthday",
     parents: ["sgfs_sr", "minnie"],
