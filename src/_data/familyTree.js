@@ -1,164 +1,240 @@
 // Data for the hand-laid family tree at /family-tree/.
 //
-// The layout coordinates here are deliberately hand-tuned per person so the
-// tree composes as a scrapbook-page artifact rather than an evenly-spaced
-// org chart. Photo paths point at the existing 400px-max-edge thumbnails;
-// in a later pass we'll generate proper portrait crops per person.
-//
 // People are keyed by an `id`; `parents` and `spouse` reference other
-// people's ids. The Eleventy build step at the bottom computes the
-// connecting lines (marriage + parent-child) so the template only has to
-// iterate, never to look anything up.
+// people's ids. The Eleventy build step at the bottom of the file walks
+// the people and emits `lines` — marriage lines as straight strokes
+// between portrait pairs, parent → child lines as soft quadratic Béziers
+// from the parents' midpoint down to the child's portrait top.
+//
+// Each person has:
+//   name       — full given name (used on the card and as the canonical label)
+//   nickname   — optional; rendered in quotes on its own caption line
+//   dates      — life-span string ("1888–1973" or "?–1975")
+//   note       — optional one-line descriptor for the caption foot
+//   photo      — optional /books/.../portrait/PPP-id.jpg path
+//   photoLink  — optional album-page URL the portrait card links to
+//   x, y, tilt — hand-tuned layout coordinates
+//   parents    — optional [id, id] pair
+//   spouse     — optional id
 
 const VIEW_W = 1500;
-const VIEW_H = 1080;
+const VIEW_H = 2200;
+
+// Row Y-coordinates per generation. Each generation row is ~360px tall
+// (200 for the card + caption block + ~160 vertical breathing room for
+// the connecting lines).
+const ROW = {
+  gen_minus_3: 200,   // Christopher the emigrant + Catherine Pritchard
+  gen_minus_2: 560,   // Christopher 2nd + Elizabeth Porcher Stoney
+  gen_minus_1: 920,   // Dr. Christopher 3rd + Susan Milliken Barker
+  gen_0:       1280,  // Amy's grandparents (Walker side + SGFS Sr. & Minnie)
+  gen_1:       1640,  // Amy + Jamie
+  gen_2:       2000,  // Walker children + spouses
+};
 
 const people = [
-  // ─── Generation 1: Amy's grandparents (Walker side) ──────────────
+  // ─── Generation −3: the emigrant ─────────────────────────────────
+  {
+    id: "emigrant",
+    name: "Christopher FitzSimons",
+    nickname: "the emigrant",
+    dates: "1762–1825",
+    note: "of Dundalk, Co. Louth, Ireland; Charleston merchant",
+    photo: "/books/book-001/images/portrait/002-emigrant.jpg",
+    photoLink: "/books/book-001/002/",
+    spouse: "catherine_pritchard",
+    x: 1000, y: ROW.gen_minus_3, tilt: -1.5,
+  },
+  {
+    id: "catherine_pritchard",
+    name: "Catherine Pritchard",
+    dates: "1772–1841",
+    note: "of Hobcaw shipyard, Christ Church Parish",
+    photo: "/books/book-001/images/portrait/002-catherine_pritchard.jpg",
+    photoLink: "/books/book-001/002/",
+    spouse: "emigrant",
+    x: 1180, y: ROW.gen_minus_3, tilt: 2,
+  },
+
+  // ─── Generation −2 ───────────────────────────────────────────────
+  {
+    id: "christopher_2nd",
+    name: "Christopher FitzSimons",
+    nickname: "Christopher 2nd",
+    dates: "1802–1832",
+    note: "died age 30 at Lexington, SC",
+    parents: ["emigrant", "catherine_pritchard"],
+    spouse: "elizabeth_porcher_stoney",
+    x: 1000, y: ROW.gen_minus_2, tilt: 1,
+  },
+  {
+    id: "elizabeth_porcher_stoney",
+    name: "Elizabeth Porcher Stoney",
+    dates: "1806–1873",
+    note: "of the Stoney–Gaillard line",
+    spouse: "christopher_2nd",
+    x: 1180, y: ROW.gen_minus_2, tilt: -2,
+  },
+
+  // ─── Generation −1 ───────────────────────────────────────────────
+  {
+    id: "christopher_3rd",
+    name: "Dr. Christopher FitzSimons",
+    nickname: "Christopher 3rd",
+    dates: "1828–1866",
+    note: "killed in the May 1866 Cooper River tornado at Moss Grove",
+    photo: "/books/book-001/images/portrait/271-christopher_3rd.jpg",
+    photoLink: "/books/book-001/271/",
+    parents: ["christopher_2nd", "elizabeth_porcher_stoney"],
+    spouse: "susan_milliken_barker",
+    x: 1000, y: ROW.gen_minus_1, tilt: -1.5,
+  },
+  {
+    id: "susan_milliken_barker",
+    name: "Susan Milliken Barker",
+    dates: "1827–1900",
+    note: "of Charleston; widowed at 39 with seven children",
+    photo: "/books/book-001/images/portrait/271-susan_milliken_barker.jpg",
+    photoLink: "/books/book-001/271/",
+    spouse: "christopher_3rd",
+    x: 1180, y: ROW.gen_minus_1, tilt: 2,
+  },
+
+  // ─── Generation 0: Amy's grandparents ────────────────────────────
   {
     id: "samuel_cadwaller",
     name: "Samuel Cadwaller Walker",
-    short: "Sam'l C. Walker",
     dates: "1842–1923",
     note: "of Winchester, VA; later Havre, MT",
     spouse: "emma_dee_pickens",
-    x: 230, y: 170, tilt: -2,
+    x: 230, y: ROW.gen_0, tilt: -2,
   },
   {
     id: "emma_dee_pickens",
     name: "Emma Dee Pickens",
-    short: "Emma Dee",
     dates: "1856–1933",
     note: "of Gnatty Creek, Barbour Co., WV",
     spouse: "samuel_cadwaller",
-    x: 400, y: 170, tilt: 1.5,
+    x: 410, y: ROW.gen_0, tilt: 1.5,
   },
-
-  // ─── Generation 1: Amy's grandparents (FitzSimons / Perry side) ──
   {
     id: "sgfs_sr",
     name: "Samuel Gaillard FitzSimons Sr.",
-    short: "S. G. FitzSimons Sr.",
     dates: "1856–1930",
     note: "of Mount Hope plantation, Edisto River",
+    photo: "/books/book-001/images/portrait/312-sgfs_sr.jpg",
+    photoLink: "/books/book-001/312/",
+    parents: ["christopher_3rd", "susan_milliken_barker"],
     spouse: "minnie",
-    x: 1000, y: 170, tilt: -1.5,
+    x: 1000, y: ROW.gen_0, tilt: -1.5,
   },
   {
     id: "minnie",
     name: "Mary Anne Perry FitzSimons",
-    short: "Minnie / Mam'mie",
+    nickname: "Minnie",
     dates: "1859–1934",
-    photo: "/books/book-002/images/thumb/026.jpg",
-    photoLink: "/books/book-002/026/",
+    note: "of Charleston",
+    photo: "/books/book-001/images/portrait/312-minnie.jpg",
+    photoLink: "/books/book-001/312/",
     spouse: "sgfs_sr",
-    x: 1170, y: 170, tilt: 2,
+    x: 1180, y: ROW.gen_0, tilt: 2,
   },
 
-  // ─── Generation 2: Amy + Jamie ───────────────────────────────────
+  // ─── Generation 1: Amy + Jamie ───────────────────────────────────
   {
     id: "jpw_sr",
     name: "James Pickens Walker Sr.",
-    short: "Jamie / Puck",
+    nickname: "Jamie / Puck",
     dates: "1883–1960",
     note: "Atlantic Coast Line Railroad",
-    photo: "/books/book-002/images/thumb/057.jpg",
+    photo: "/books/book-002/images/portrait/057-jpw_sr.jpg",
     photoLink: "/books/book-002/057/",
+    parents: ["samuel_cadwaller", "emma_dee_pickens"],
     spouse: "amy",
-    x: 600, y: 540, tilt: -2,
+    x: 600, y: ROW.gen_1, tilt: -2,
   },
   {
     id: "amy",
     name: "Amy Ann Perry FitzSimons",
-    short: "Amy",
+    nickname: "Amy",
     dates: "1888–1973",
     note: "the compiler of this album",
-    photo: "/books/book-002/images/thumb/047.jpg",
+    photo: "/books/book-002/images/portrait/047-amy.jpg",
     photoLink: "/books/book-002/047/",
+    parents: ["sgfs_sr", "minnie"],
     spouse: "jpw_sr",
-    x: 800, y: 540, tilt: 1.5,
+    x: 800, y: ROW.gen_1, tilt: 1.5,
   },
 
-  // ─── Generation 3: Walker children + their spouses ───────────────
+  // ─── Generation 2: Walker children + spouses ─────────────────────
   {
     id: "buzzie",
-    name: "Amy Perry \"Buzzie\" Walker",
-    short: "Buzzie",
+    name: "Amy Perry Walker",
+    nickname: "Buzzie",
     dates: "1910–1911",
     note: "died at fifteen months",
     parents: ["jpw_sr", "amy"],
-    x: 180, y: 880, tilt: -1,
+    x: 180, y: ROW.gen_2, tilt: -1,
   },
   {
     id: "bo",
     name: "James Pickens Walker Jr.",
-    short: "Bo",
+    nickname: "Bo",
     dates: "1912–1969",
     note: "Medical Corps captain, WWII",
-    photo: "/books/book-002/images/thumb/169.jpg",
+    photo: "/books/book-002/images/portrait/169-bo.jpg",
     photoLink: "/books/book-002/169/",
     parents: ["jpw_sr", "amy"],
     spouse: "ann_knight",
-    x: 430, y: 880, tilt: 1,
+    x: 430, y: ROW.gen_2, tilt: 1,
   },
   {
     id: "ann_knight",
     name: "Ann Seymour Knight",
-    short: "Ann Knight",
     dates: "c. 1918–2010",
-    note: "m. Bo June 1941; later Mrs. M. E. Lord",
+    note: "later Mrs. Morton E. Lord",
     spouse: "bo",
-    x: 580, y: 880, tilt: -1,
+    x: 590, y: ROW.gen_2, tilt: -1,
   },
   {
     id: "dee",
     name: "Emma Dee Walker Corbell",
-    short: "Dee",
+    nickname: "Dee",
     dates: "1915–1959",
     parents: ["jpw_sr", "amy"],
     spouse: "robert_corbell",
-    x: 800, y: 880, tilt: -1.5,
+    x: 800, y: ROW.gen_2, tilt: -1.5,
   },
   {
     id: "robert_corbell",
     name: "Dr. Robert Lawrence Corbell Jr.",
-    short: "Dr. Corbell",
     dates: "?–1960",
     note: "82nd Airborne battalion surgeon",
-    photo: "/books/book-002/images/thumb/192.jpg",
-    photoLink: "/books/book-002/192/",
     spouse: "dee",
-    x: 950, y: 880, tilt: 2,
+    x: 960, y: ROW.gen_2, tilt: 2,
   },
   {
     id: "mary_ann",
     name: "Mary Ann Walker McEwan",
-    short: "Mary Ann",
-    dates: "?–1975",
+    dates: "1918–1975",
     note: "Hunter's grandmother",
+    photo: "/books/book-002/images/portrait/087-mary_ann.jpg",
+    photoLink: "/books/book-002/087/",
     parents: ["jpw_sr", "amy"],
     spouse: "oswald",
-    x: 1170, y: 880, tilt: 1,
+    x: 1170, y: ROW.gen_2, tilt: 1,
   },
   {
     id: "oswald",
     name: "Oswald Beverley McEwan",
-    short: "Lt. Col. McEwan",
     dates: "?–?",
     note: "U.S. Army, Field Artillery",
-    photo: "/books/book-002/images/thumb/181.jpg",
+    photo: "/books/book-002/images/portrait/181-oswald.jpg",
     photoLink: "/books/book-002/181/",
     spouse: "mary_ann",
-    x: 1320, y: 880, tilt: -2,
+    x: 1330, y: ROW.gen_2, tilt: -2,
   },
 ];
-
-// Wire up "Amy's parents" and "JPW Sr.'s parents" by adding the parents field
-// to the gen-2 entries (kept separate above for readability).
-for (const p of people) {
-  if (p.id === "jpw_sr") p.parents = ["samuel_cadwaller", "emma_dee_pickens"];
-  if (p.id === "amy") p.parents = ["sgfs_sr", "minnie"];
-}
 
 // ─── Compute connecting lines ──────────────────────────────────────
 const positions = Object.fromEntries(people.map(p => [p.id, { x: p.x, y: p.y }]));
@@ -167,7 +243,6 @@ const lines = [];
 const seenMarriages = new Set();
 
 for (const p of people) {
-  // Marriage: horizontal line through the bottom of both portraits.
   if (p.spouse && positions[p.spouse]) {
     const key = [p.id, p.spouse].sort().join("|");
     if (!seenMarriages.has(key)) {
@@ -175,28 +250,22 @@ for (const p of people) {
       const sp = positions[p.spouse];
       lines.push({
         type: "marriage",
-        x1: Math.min(p.x, sp.x) + 60, y1: p.y + 90,
-        x2: Math.max(p.x, sp.x) - 60, y2: sp.y + 90,
+        x1: Math.min(p.x, sp.x) + 84, y1: p.y + 100,
+        x2: Math.max(p.x, sp.x) - 84, y2: sp.y + 100,
       });
     }
   }
 
-  // Parent-child: a soft elbow from the midpoint between parents down to the
-  // child's portrait top. Rendered as a quadratic Bézier with a control point
-  // placed midway down, so the line reads as a hand-drawn descent rather than
-  // an engineering rule.
   if (p.parents && p.parents.length === 2) {
-    const [aId, bId] = p.parents;
-    const a = positions[aId];
-    const b = positions[bId];
+    const a = positions[p.parents[0]];
+    const b = positions[p.parents[1]];
     if (a && b) {
-      const midX = (a.x + b.x) / 2;
-      const midY = (a.y + b.y) / 2 + 90;
-      const childTop = { x: p.x, y: p.y - 90 };
       lines.push({
         type: "descent",
-        midX, midY,
-        childX: childTop.x, childY: childTop.y,
+        midX: (a.x + b.x) / 2,
+        midY: (a.y + b.y) / 2 + 100,
+        childX: p.x,
+        childY: p.y - 100,
       });
     }
   }

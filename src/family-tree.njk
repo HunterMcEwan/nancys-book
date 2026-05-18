@@ -10,7 +10,7 @@ permalink: /family-tree/
   <p class="family-tree-page__eyebrow">A hand-laid genealogical map</p>
   <h1>The FitzSimons – Walker family</h1>
   <p class="family-tree-page__lede">
-    A scrapbook-style family tree centred on the compiler, <strong>Amy Ann Perry FitzSimons</strong> (1888–1973). Each portrait links back to its page in the bound album where one exists. This is a working prototype — three generations so far, with the wider colonial-Charleston ancestors and collateral branches still to add.
+    A scrapbook-style family tree centred on the compiler, <strong>Amy Ann Perry FitzSimons</strong> (1888–1973). Each portrait links back to the album page on which it was originally pasted. The FitzSimons line is traced six generations, from <strong>Christopher the emigrant</strong> (1762–1825) of Dundalk, Ireland, down through Amy to her grandchildren.
   </p>
 </header>
 
@@ -73,25 +73,30 @@ permalink: /family-tree/
       {% if linkTarget %}<a href="{{ linkTarget }}" aria-label="Source page for {{ p.name }}">{% endif %}
         <g filter="url(#ft-card-shadow)">
           {# Cream paper backing slightly wider than the photo. #}
-          <rect class="ft-card-backing" x="-72" y="-92" width="144" height="184"/>
+          <rect class="ft-card-backing" x="-84" y="-100" width="168" height="200"/>
           {% if hasPhoto %}
-            <image x="-60" y="-80" width="120" height="150"
+            <image x="-70" y="-86" width="140" height="172"
                    href="{{ p.photo }}"
                    preserveAspectRatio="xMidYMid slice"/>
-            <rect class="ft-photo-border" x="-60" y="-80" width="120" height="150"/>
+            <rect class="ft-photo-border" x="-70" y="-86" width="140" height="172"/>
           {% else %}
             {# Empty cream card with a pencilled flourish. #}
-            <rect class="ft-blank-card" x="-60" y="-80" width="120" height="150"/>
+            <rect class="ft-blank-card" x="-70" y="-86" width="140" height="172"/>
             <text class="ft-blank-mark" x="0" y="0" text-anchor="middle">⁂</text>
           {% endif %}
         </g>
       {% if linkTarget %}</a>{% endif %}
 
-      {# Caption: short name + dates + optional note. #}
-      <text class="ft-name" x="0" y="115" text-anchor="middle">{{ p.short }}</text>
-      <text class="ft-dates" x="0" y="135" text-anchor="middle">{{ p.dates }}</text>
+      {# Caption: full name, optional nickname, dates, optional note. #}
+      <text class="ft-name" x="0" y="120" text-anchor="middle">{{ p.name }}</text>
+      {% set captionY = 138 %}
+      {% if p.nickname %}
+        <text class="ft-nickname" x="0" y="{{ captionY }}" text-anchor="middle">&ldquo;{{ p.nickname }}&rdquo;</text>
+        {% set captionY = captionY + 16 %}
+      {% endif %}
+      <text class="ft-dates" x="0" y="{{ captionY }}" text-anchor="middle">{{ p.dates }}</text>
       {% if p.note %}
-        <text class="ft-note" x="0" y="153" text-anchor="middle">{{ p.note }}</text>
+        <text class="ft-note" x="0" y="{{ captionY + 16 }}" text-anchor="middle">{{ p.note }}</text>
       {% endif %}
     </g>
   {% endfor %}
@@ -106,7 +111,7 @@ permalink: /family-tree/
 
 <footer class="family-tree-page__footer">
   <p>
-    This prototype is hand-laid; coordinates are tuned per person rather than auto-generated, so the tree composes more like a scrapbook page than an org chart. Click any portrait to jump to the album page where it was originally pasted. Use your browser's zoom controls to inspect details — the SVG stays crisp at any size.
+    Click any portrait to jump to the album page where the photograph was originally pasted. Use your browser&rsquo;s zoom to inspect details &mdash; the tree stays crisp at any size.
   </p>
 </footer>
 

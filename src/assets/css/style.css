@@ -887,19 +887,25 @@ li { margin-bottom: var(--space-1); }
 .ft-name {
   font-family: var(--font-serif);
   font-style: italic;
-  font-size: 13.5px;
+  font-size: 12.5px;
   fill: var(--color-ink);
+}
+.ft-nickname {
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-size: 12px;
+  fill: var(--color-accent);
 }
 .ft-dates {
   font-family: var(--font-mono);
-  font-size: 11px;
+  font-size: 10.5px;
   letter-spacing: 0.06em;
   fill: var(--color-ink-soft);
 }
 .ft-note {
   font-family: var(--font-serif);
   font-style: italic;
-  font-size: 11px;
+  font-size: 10.5px;
   fill: var(--color-ink-faded);
 }
 
