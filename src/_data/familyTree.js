@@ -5,31 +5,18 @@
 // the people and emits `lines` — marriage lines as straight strokes
 // between portrait pairs, parent → child lines as soft quadratic Béziers
 // from the parents' midpoint down to the child's portrait top.
-//
-// Each person has:
-//   name       — full given name (used on the card and as the canonical label)
-//   nickname   — optional; rendered in quotes on its own caption line
-//   dates      — life-span string ("1888–1973" or "?–1975")
-//   note       — optional one-line descriptor for the caption foot
-//   photo      — optional /books/.../portrait/PPP-id.jpg path
-//   photoLink  — optional album-page URL the portrait card links to
-//   x, y, tilt — hand-tuned layout coordinates
-//   parents    — optional [id, id] pair
-//   spouse     — optional id
 
-const VIEW_W = 2800;
-const VIEW_H = 2200;
+const VIEW_W = 3000;
+const VIEW_H = 2400;
 
-// Row Y-coordinates per generation. Each generation row is ~360px tall
-// (200 for the card + caption block + ~160 vertical breathing room for
-// the connecting lines).
 const ROW = {
-  gen_minus_3: 200,   // Christopher the emigrant + Catherine Pritchard
-  gen_minus_2: 560,   // Christopher 2nd + Elizabeth Porcher Stoney
-  gen_minus_1: 920,   // Dr. Christopher 3rd + Susan Milliken Barker
-  gen_0:       1280,  // Amy's grandparents (Walker side + SGFS Sr. & Minnie)
-  gen_1:       1640,  // Amy + Jamie
-  gen_2:       2000,  // Walker children + spouses
+  gen_minus_3:    200,   // Christopher the emigrant + Catherine Pritchard
+  gen_minus_2:    560,   // Christopher 2nd + siblings
+  gen_minus_1:    920,   // Dr. Christopher 3rd + siblings
+  gen_0:         1280,   // Amy's grandparents (Walker side + SGFS Sr. & Minnie + siblings)
+  gen_1_cousins: 1530,   // Amy's first cousins on the FitzSimons side (sub-row)
+  gen_1:         1800,   // Amy + Jamie + Amy's surviving siblings + spouses
+  gen_2:         2160,   // Walker children + spouses
 };
 
 const people = [
@@ -56,7 +43,27 @@ const people = [
     x: 1180, y: ROW.gen_minus_3, tilt: 2,
   },
 
-  // ─── Generation −2 ───────────────────────────────────────────────
+  // ─── Generation −2: children of the emigrant ─────────────────────
+  // Christopher emigrant + Catherine Pritchard bore 10+ children;
+  // four survived to maturity. Christopher 2nd (Amy's direct line) is
+  // centered; Ann, Paul, and Catherine fan out either side.
+  {
+    id: "ann_fs",
+    name: "Ann FitzSimons",
+    dates: "1794–1833",
+    note: "mother of Lt. Gen. Wade Hampton III",
+    parents: ["emigrant", "catherine_pritchard"],
+    spouse: "wade_hampton_ii",
+    x: 200, y: ROW.gen_minus_2, tilt: -2,
+  },
+  {
+    id: "wade_hampton_ii",
+    name: "Col. Wade Hampton II",
+    dates: "1791–1858",
+    note: "m. Ann FitzSimons 1817",
+    spouse: "ann_fs",
+    x: 380, y: ROW.gen_minus_2, tilt: 1,
+  },
   {
     id: "christopher_2nd",
     name: "Christopher FitzSimons",
@@ -75,8 +82,60 @@ const people = [
     spouse: "christopher_2nd",
     x: 1180, y: ROW.gen_minus_2, tilt: -2,
   },
+  {
+    id: "paul_emigrant_son",
+    name: "Paul FitzSimons",
+    dates: "1800–1840",
+    note: "founded the Georgia FitzSimons branch",
+    parents: ["emigrant", "catherine_pritchard"],
+    spouse: "eleanor_nesbit_white",
+    x: 1500, y: ROW.gen_minus_2, tilt: -1,
+  },
+  {
+    id: "eleanor_nesbit_white",
+    name: "Eleanor Nesbit White",
+    dates: "?–?",
+    note: "of Augusta, GA",
+    spouse: "paul_emigrant_son",
+    x: 1680, y: ROW.gen_minus_2, tilt: 2,
+  },
+  {
+    id: "catherine_fs_hammond",
+    name: "Catherine FitzSimons",
+    dates: "1814–1896",
+    note: "of Redcliffe, Beech Island, SC",
+    parents: ["emigrant", "catherine_pritchard"],
+    spouse: "gov_james_hammond",
+    x: 1880, y: ROW.gen_minus_2, tilt: 1.5,
+  },
+  {
+    id: "gov_james_hammond",
+    name: "Gov. James H. Hammond",
+    dates: "1807–1864",
+    note: "S.C. governor & U.S. senator",
+    spouse: "catherine_fs_hammond",
+    x: 2060, y: ROW.gen_minus_2, tilt: -1.5,
+  },
 
-  // ─── Generation −1 ───────────────────────────────────────────────
+  // ─── Generation −1: children of Christopher 2nd ──────────────────
+  // Four surviving children per page 003: Christopher 3rd (the doctor),
+  // Peter Gaillard FS, Catherine Ann FS, and Paul FS.
+  {
+    id: "peter_gaillard_fs",
+    name: "Peter Gaillard FitzSimons",
+    dates: "?–?",
+    note: "of the Stoney–Gaillard line",
+    parents: ["christopher_2nd", "elizabeth_porcher_stoney"],
+    spouse: "julia_white",
+    x: 200, y: ROW.gen_minus_1, tilt: 1.5,
+  },
+  {
+    id: "julia_white",
+    name: "Julia White",
+    dates: "?–?",
+    spouse: "peter_gaillard_fs",
+    x: 380, y: ROW.gen_minus_1, tilt: -1,
+  },
   {
     id: "christopher_3rd",
     name: "Dr. Christopher FitzSimons",
@@ -99,6 +158,38 @@ const people = [
     spouse: "christopher_3rd",
     x: 1180, y: ROW.gen_minus_1, tilt: 2,
   },
+  {
+    id: "catherine_ann_fs",
+    name: "Catherine Ann FitzSimons",
+    dates: "?–?",
+    parents: ["christopher_2nd", "elizabeth_porcher_stoney"],
+    spouse: "dr_robert_vaux",
+    x: 1500, y: ROW.gen_minus_1, tilt: 1,
+  },
+  {
+    id: "dr_robert_vaux",
+    name: "Dr. Robert W. Vaux",
+    dates: "?–?",
+    note: "of Georgetown, SC",
+    spouse: "catherine_ann_fs",
+    x: 1680, y: ROW.gen_minus_1, tilt: -2,
+  },
+  {
+    id: "paul_fs_gen3",
+    name: "Paul FitzSimons",
+    dates: "?–?",
+    parents: ["christopher_2nd", "elizabeth_porcher_stoney"],
+    spouse: "martha_selina_ford",
+    x: 1880, y: ROW.gen_minus_1, tilt: -1,
+  },
+  {
+    id: "martha_selina_ford",
+    name: "Martha Selina Ford",
+    dates: "?–?",
+    note: "m. 1857",
+    spouse: "paul_fs_gen3",
+    x: 2060, y: ROW.gen_minus_1, tilt: 1.5,
+  },
 
   // ─── Generation 0: Amy's grandparents ────────────────────────────
   {
@@ -117,7 +208,8 @@ const people = [
     spouse: "samuel_cadwaller",
     x: 410, y: ROW.gen_0, tilt: 1.5,
   },
-  // ── SGFS Sr.'s elder brother, "Kit", and his wife ──
+
+  // SGFS Sr.'s elder brother "Kit" + wife
   {
     id: "kit",
     name: "Christopher FitzSimons Jr.",
@@ -141,7 +233,7 @@ const people = [
     x: 800, y: ROW.gen_0, tilt: 2,
   },
 
-  // ── SGFS Sr. + Minnie (Amy's parents) ──
+  // SGFS Sr. + Minnie (Amy's parents)
   {
     id: "sgfs_sr",
     name: "Samuel Gaillard FitzSimons Sr.",
@@ -165,7 +257,7 @@ const people = [
     x: 1180, y: ROW.gen_0, tilt: 2,
   },
 
-  // ── SGFS Sr.'s siblings (Amy's paternal aunts & uncles) ──
+  // Remaining SGFS Sr. siblings (Amy's other paternal aunts & uncles)
   {
     id: "theodore_stoney_fs",
     name: "Theodore Stoney FitzSimons",
@@ -236,7 +328,101 @@ const people = [
     x: 2640, y: ROW.gen_0, tilt: 2,
   },
 
-  // ─── Generation 1: Amy + Jamie ───────────────────────────────────
+  // ─── gen_1 sub-row: Amy's first cousins on the FitzSimons side ──
+  // Two of Kit's children
+  {
+    id: "susan_milliken_allison",
+    name: "Susan Milliken FitzSimons",
+    dates: "?–?",
+    note: "m. Dr. James Richard Allison",
+    parents: ["kit", "frances_motte_huger"],
+    x: 620, y: ROW.gen_1_cousins, tilt: -1,
+  },
+  {
+    id: "christopher_5th",
+    name: "Christopher FitzSimons",
+    nickname: "Christopher 5th",
+    dates: "1892–?",
+    note: "m. Nathalie Heyward",
+    parents: ["kit", "frances_motte_huger"],
+    x: 800, y: ROW.gen_1_cousins, tilt: 1.5,
+  },
+  // Theodore Stoney's three children
+  {
+    id: "john_mccrady_fs",
+    name: "John McCrady FitzSimons",
+    dates: "?–?",
+    parents: ["theodore_stoney_fs", "sabina_mccrady"],
+    x: 1320, y: ROW.gen_1_cousins, tilt: -1,
+  },
+  {
+    id: "louisa_de_burian_fs",
+    name: "Louisa de Burian FitzSimons",
+    dates: "?–?",
+    parents: ["theodore_stoney_fs", "sabina_mccrady"],
+    x: 1470, y: ROW.gen_1_cousins, tilt: 1,
+  },
+  {
+    id: "theodora_lynch_fs",
+    name: "Theodora Lynch FitzSimons",
+    dates: "?–?",
+    parents: ["theodore_stoney_fs", "sabina_mccrady"],
+    x: 1620, y: ROW.gen_1_cousins, tilt: -1.5,
+  },
+  // Seaman + Henrietta's son
+  {
+    id: "christopher_seaman_son",
+    name: "Christopher FitzSimons",
+    dates: "1888–1898",
+    note: "d. at Waycross, GA, age 10",
+    parents: ["seaman", "henrietta_gaillard"],
+    x: 1850, y: ROW.gen_1_cousins, tilt: 1,
+  },
+  // William Huger + Annie Cain's five children
+  {
+    id: "cain_fs",
+    name: "James Cain FitzSimons",
+    nickname: "Cain",
+    dates: "1889–?",
+    parents: ["w_huger_fs", "annie_cain"],
+    x: 2010, y: ROW.gen_1_cousins, tilt: -1,
+  },
+  {
+    id: "huger_jr_fs",
+    name: "William Huger FitzSimons Jr.",
+    dates: "?–?",
+    parents: ["w_huger_fs", "annie_cain"],
+    x: 2140, y: ROW.gen_1_cousins, tilt: 1,
+  },
+  {
+    id: "sam_aviator_fs",
+    name: "Samuel Gaillard FitzSimons",
+    nickname: "the WWI aviator",
+    dates: "c. 1894–1932",
+    note: "founded the Lost Battalion; d. by suicide near Flat Rock",
+    parents: ["w_huger_fs", "annie_cain"],
+    x: 2270, y: ROW.gen_1_cousins, tilt: -1.5,
+  },
+  {
+    id: "marguerite_fs",
+    name: "Marguerite FitzSimons",
+    dates: "?–?",
+    note: "m. Dr. Robert Pringle",
+    parents: ["w_huger_fs", "annie_cain"],
+    x: 2400, y: ROW.gen_1_cousins, tilt: 1.5,
+  },
+  {
+    id: "reginald_fs",
+    name: "Reginald FitzSimons",
+    dates: "?–?",
+    parents: ["w_huger_fs", "annie_cain"],
+    x: 2530, y: ROW.gen_1_cousins, tilt: -1,
+  },
+
+  // ─── Generation 1: Amy + Jamie + Amy's siblings ────────────────
+  // Amy and Jamie shifted slightly right of their old position so the
+  // descent line from SGFS Sr. + Minnie (midpoint 1090) lands close to
+  // Amy, and so Amy's surviving FS siblings can sit just to her right.
   {
     id: "jpw_sr",
     name: "James Pickens Walker Sr.",
@@ -247,7 +433,7 @@ const people = [
     photoLink: "/books/book-002/057/",
     parents: ["samuel_cadwaller", "emma_dee_pickens"],
     spouse: "amy",
-    x: 600, y: ROW.gen_1, tilt: -2,
+    x: 700, y: ROW.gen_1, tilt: -2,
   },
   {
     id: "amy",
@@ -255,11 +441,74 @@ const people = [
     nickname: "Amy",
     dates: "1888–1973",
     note: "the compiler of this album",
-    photo: "/books/book-002/images/portrait/047-amy.jpg",
-    photoLink: "/books/book-002/047/",
+    photo: "/books/book-001/images/portrait/392-amy_child.jpg",
+    photoLink: "/books/book-001/392/",
     parents: ["sgfs_sr", "minnie"],
     spouse: "jpw_sr",
-    x: 800, y: ROW.gen_1, tilt: 1.5,
+    x: 880, y: ROW.gen_1, tilt: 1.5,
+  },
+  // Hunter Perry — Amy's brother who died on her 7th birthday; the
+  // user's namesake. Rendered as a small commemoration card.
+  {
+    id: "hunter_perry_fs",
+    name: "Hunter Perry FitzSimons",
+    nickname: "Hunkin",
+    dates: "1893–1895",
+    note: "d. of diphtheria on Amy's 7th birthday",
+    parents: ["sgfs_sr", "minnie"],
+    x: 1060, y: ROW.gen_1, tilt: -1,
+    small: true,
+  },
+  // Amy's three surviving FS siblings and their spouses
+  {
+    id: "theodore_barker_fs",
+    name: "Theodore Barker FitzSimons",
+    dates: "?–1943",
+    parents: ["sgfs_sr", "minnie"],
+    spouse: "clara_mueller",
+    x: 1240, y: ROW.gen_1, tilt: 1,
+  },
+  {
+    id: "clara_mueller",
+    name: "Clara Hamilton Mueller",
+    dates: "?–?",
+    spouse: "theodore_barker_fs",
+    x: 1420, y: ROW.gen_1, tilt: -2,
+  },
+  {
+    id: "mary_annie_fs",
+    name: "Mary Annie FitzSimons",
+    nickname: "Minnie",
+    dates: "?–?",
+    note: "later Mrs. John Sosnowski of Charleston",
+    parents: ["sgfs_sr", "minnie"],
+    spouse: "donald_mckay_allston",
+    x: 1620, y: ROW.gen_1, tilt: -1,
+  },
+  {
+    id: "donald_mckay_allston",
+    name: "Donald McKay Allston",
+    dates: "?–?",
+    note: "of John's Island, SC",
+    spouse: "mary_annie_fs",
+    x: 1800, y: ROW.gen_1, tilt: 2,
+  },
+  {
+    id: "sgfs_jr",
+    name: "Samuel Gaillard FitzSimons Jr.",
+    nickname: "Buck",
+    dates: "1904–1961",
+    parents: ["sgfs_sr", "minnie"],
+    spouse: "mary_hadlock",
+    x: 2000, y: ROW.gen_1, tilt: 1.5,
+  },
+  {
+    id: "mary_hadlock",
+    name: "Mary Hadlock",
+    dates: "?–?",
+    note: "m. 24 Jan 1931 at Petersburg, VA",
+    spouse: "sgfs_jr",
+    x: 2180, y: ROW.gen_1, tilt: -1,
   },
 
   // ─── Generation 2: Walker children + spouses ─────────────────────
@@ -269,8 +518,10 @@ const people = [
     nickname: "Buzzie",
     dates: "1910–1911",
     note: "died at fifteen months",
+    photo: "/books/book-001/images/portrait/392-buzzie.jpg",
+    photoLink: "/books/book-001/392/",
     parents: ["jpw_sr", "amy"],
-    x: 180, y: ROW.gen_2, tilt: -1,
+    x: 260, y: ROW.gen_2, tilt: -1,
   },
   {
     id: "bo",
@@ -278,11 +529,11 @@ const people = [
     nickname: "Bo",
     dates: "1912–1969",
     note: "Medical Corps captain, WWII",
-    photo: "/books/book-002/images/portrait/169-bo.jpg",
-    photoLink: "/books/book-002/169/",
+    photo: "/books/book-001/images/portrait/393-bo_school.jpg",
+    photoLink: "/books/book-001/393/",
     parents: ["jpw_sr", "amy"],
     spouse: "ann_knight",
-    x: 430, y: ROW.gen_2, tilt: 1,
+    x: 510, y: ROW.gen_2, tilt: 1,
   },
   {
     id: "ann_knight",
@@ -290,16 +541,18 @@ const people = [
     dates: "c. 1918–2010",
     note: "later Mrs. Morton E. Lord",
     spouse: "bo",
-    x: 590, y: ROW.gen_2, tilt: -1,
+    x: 670, y: ROW.gen_2, tilt: -1,
   },
   {
     id: "dee",
     name: "Emma Dee Walker Corbell",
     nickname: "Dee",
     dates: "1915–1959",
+    photo: "/books/book-001/images/portrait/393-dee_school.jpg",
+    photoLink: "/books/book-001/393/",
     parents: ["jpw_sr", "amy"],
     spouse: "robert_corbell",
-    x: 800, y: ROW.gen_2, tilt: -1.5,
+    x: 880, y: ROW.gen_2, tilt: -1.5,
   },
   {
     id: "robert_corbell",
@@ -307,18 +560,18 @@ const people = [
     dates: "?–1960",
     note: "82nd Airborne battalion surgeon",
     spouse: "dee",
-    x: 960, y: ROW.gen_2, tilt: 2,
+    x: 1040, y: ROW.gen_2, tilt: 2,
   },
   {
     id: "mary_ann",
     name: "Mary Ann Walker McEwan",
     dates: "1918–1975",
     note: "Hunter's grandmother",
-    photo: "/books/book-002/images/portrait/087-mary_ann.jpg",
-    photoLink: "/books/book-002/087/",
+    photo: "/books/book-001/images/portrait/393-mary_ann_school.jpg",
+    photoLink: "/books/book-001/393/",
     parents: ["jpw_sr", "amy"],
     spouse: "oswald",
-    x: 1170, y: ROW.gen_2, tilt: 1,
+    x: 1240, y: ROW.gen_2, tilt: 1,
   },
   {
     id: "oswald",
@@ -329,7 +582,7 @@ const people = [
     photo: "/books/book-002/images/portrait/181-oswald.jpg",
     photoLink: "/books/book-002/181/",
     spouse: "mary_ann",
-    x: 1330, y: ROW.gen_2, tilt: -2,
+    x: 1400, y: ROW.gen_2, tilt: -2,
   },
 ];
 

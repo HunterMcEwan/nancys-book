@@ -820,25 +820,38 @@ li { margin-bottom: var(--space-1); }
   color: var(--color-ink-soft);
 }
 .family-tree-page__canvas {
-  overflow-x: auto;
-  -webkit-overflow-scrolling: touch;
+  position: relative;
+  height: 78vh;
+  min-height: 560px;
   margin-bottom: var(--space-5);
   border: 1px solid var(--color-paper-rule);
   background: var(--color-paper);
   box-shadow: 0 4px 18px -8px rgba(31, 26, 20, 0.25);
+  overflow: hidden;
+  touch-action: none; /* let svg-pan-zoom own touch gestures */
 }
 .family-tree-svg {
   display: block;
   width: 100%;
-  height: auto;
-  min-width: 1100px; /* below this we let the canvas scroll horizontally */
+  height: 100%;
 }
-.family-tree-page__footer {
-  max-width: var(--measure-prose);
-  margin: 0 auto;
-  font-size: 0.95rem;
+.family-tree-page__hint {
+  margin: var(--space-3) auto 0;
+  max-width: 56ch;
+  font-size: 0.92rem;
+  color: var(--color-ink-faded);
+  font-style: italic;
+}
+.family-tree-page__hint-key {
+  font-family: var(--font-mono);
+  font-style: normal;
+  font-size: 0.85em;
+  padding: 0.05em 0.4em;
+  border: 1px solid var(--color-paper-rule);
+  border-radius: 3px;
+  background: var(--color-paper-deep);
   color: var(--color-ink-soft);
-  line-height: 1.55;
+  margin: 0 0.1em;
 }
 
 /* ── SVG-internal styling ───────────────────────────────────────── */

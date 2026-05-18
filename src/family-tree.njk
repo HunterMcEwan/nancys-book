@@ -10,27 +10,27 @@ permalink: /family-tree/
   <p class="family-tree-page__eyebrow">A hand-laid genealogical map</p>
   <h1>The FitzSimons – Walker family</h1>
   <p class="family-tree-page__lede">
-    A scrapbook-style family tree centred on the compiler, <strong>Amy Ann Perry FitzSimons</strong> (1888–1973). Each portrait links back to the album page on which it was originally pasted. The FitzSimons line is traced six generations, from <strong>Christopher the emigrant</strong> (1762–1825) of Dundalk, Ireland, down through Amy to her grandchildren — and across to her six paternal aunts and uncles in the gen-0 row.
+    A scrapbook-style family tree centred on the compiler, <strong>Amy Ann Perry FitzSimons</strong> (1888–1973). Each portrait links back to the album page on which it was originally pasted. The FitzSimons line is traced six generations, from <strong>Christopher the emigrant</strong> (1762–1825) of Dundalk, Ireland, down through Amy to her grandchildren — with Amy's siblings and her first cousins on the FitzSimons side branching out at her own row.
+  </p>
+  <p class="family-tree-page__hint">
+    Drag to pan; scroll, pinch, or use the <span class="family-tree-page__hint-key">+ / − / ⌂</span> controls to zoom. Click any portrait to open the album page where the photograph was pasted.
   </p>
 </header>
 
 <div class="family-tree-page__canvas">
-<svg class="family-tree-svg"
+<svg id="family-tree-svg"
+     class="family-tree-svg"
      xmlns="http://www.w3.org/2000/svg"
      viewBox="0 0 {{ familyTree.viewW }} {{ familyTree.viewH }}"
      role="img"
      aria-label="Family tree centred on Amy Ann Perry FitzSimons">
 
   <defs>
-    {# Subtle paper-texture overlay to soften the SVG background.
-       A tiled noise pattern is too heavy here — a soft radial vignette
-       reads as "scrapbook page" more cheaply. #}
     <radialGradient id="ft-paper-vignette" cx="50%" cy="50%" r="75%">
       <stop offset="0%"   stop-color="#f6efe1" stop-opacity="0"/>
       <stop offset="100%" stop-color="#cdbf99" stop-opacity="0.18"/>
     </radialGradient>
 
-    {# Soft shadow under each photo card — like a pasted print. #}
     <filter id="ft-card-shadow" x="-20%" y="-20%" width="140%" height="140%">
       <feGaussianBlur in="SourceAlpha" stdDeviation="3"/>
       <feOffset dx="2" dy="3" result="offsetblur"/>
@@ -39,11 +39,9 @@ permalink: /family-tree/
     </filter>
   </defs>
 
-  {# Page background. #}
   <rect x="0" y="0" width="{{ familyTree.viewW }}" height="{{ familyTree.viewH }}" fill="#f6efe1"/>
   <rect x="0" y="0" width="{{ familyTree.viewW }}" height="{{ familyTree.viewH }}" fill="url(#ft-paper-vignette)"/>
 
-  {# ── Connecting lines drawn first so portraits sit on top ────── #}
   <g class="ft-lines">
     {% for line in familyTree.lines %}
       {% if line.type == "marriage" %}
@@ -51,9 +49,6 @@ permalink: /family-tree/
               x1="{{ line.x1 }}" y1="{{ line.y1 }}"
               x2="{{ line.x2 }}" y2="{{ line.y2 }}"/>
       {% elif line.type == "descent" %}
-        {# Quadratic Bézier from the parents' midpoint to the child's top.
-           Control point sits halfway between, shifted toward the child's x
-           for a soft hand-drawn elbow. #}
         {% set cpX = (line.midX + line.childX) / 2 %}
         {% set cpY = (line.midY + line.childY) / 2 + 60 %}
         <path class="ft-line-descent"
@@ -63,16 +58,13 @@ permalink: /family-tree/
     {% endfor %}
   </g>
 
-  {# ── Person cards ────────────────────────────────────────────── #}
   {% for p in familyTree.people %}
     <g class="ft-person" transform="translate({{ p.x }}, {{ p.y }}) rotate({{ p.tilt or 0 }})">
       {% set hasPhoto = p.photo %}
       {% set linkTarget = p.photoLink %}
 
-      {# Photo card (or blank card when no photo exists). #}
       {% if linkTarget %}<a href="{{ linkTarget }}" aria-label="Source page for {{ p.name }}">{% endif %}
         <g filter="url(#ft-card-shadow)">
-          {# Cream paper backing slightly wider than the photo. #}
           <rect class="ft-card-backing" x="-84" y="-100" width="168" height="200"/>
           {% if hasPhoto %}
             <image x="-70" y="-86" width="140" height="172"
@@ -80,14 +72,12 @@ permalink: /family-tree/
                    preserveAspectRatio="xMidYMid slice"/>
             <rect class="ft-photo-border" x="-70" y="-86" width="140" height="172"/>
           {% else %}
-            {# Empty cream card with a pencilled flourish. #}
             <rect class="ft-blank-card" x="-70" y="-86" width="140" height="172"/>
             <text class="ft-blank-mark" x="0" y="0" text-anchor="middle">⁂</text>
           {% endif %}
         </g>
       {% if linkTarget %}</a>{% endif %}
 
-      {# Caption: full name, optional nickname, dates, optional note. #}
       <text class="ft-name" x="0" y="120" text-anchor="middle">{{ p.name }}</text>
       {% set captionY = 138 %}
       {% if p.nickname %}
@@ -101,18 +91,36 @@ permalink: /family-tree/
     </g>
   {% endfor %}
 
-  {# Decorative title in the upper-left corner of the canvas. #}
   <g class="ft-canvas-title" transform="translate(60, 70)">
     <text class="ft-canvas-title__heading">Amy's people</text>
-    <text class="ft-canvas-title__sub" y="22">Three generations of the Walker, FitzSimons, and Perry families</text>
+    <text class="ft-canvas-title__sub" y="22">Six generations of the Walker, FitzSimons, Perry, Pritchard, Hampton, and Hammond families</text>
   </g>
 </svg>
 </div>
 
-<footer class="family-tree-page__footer">
-  <p>
-    Click any portrait to jump to the album page where the photograph was originally pasted. Use your browser&rsquo;s zoom to inspect details &mdash; the tree stays crisp at any size.
-  </p>
-</footer>
-
 </section>
+
+<script src="https://cdn.jsdelivr.net/npm/svg-pan-zoom@3.6.1/dist/svg-pan-zoom.min.js"></script>
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    var svg = document.getElementById("family-tree-svg");
+    if (!svg || typeof svgPanZoom !== "function") return;
+    var panZoomInstance = svgPanZoom(svg, {
+      zoomEnabled: true,
+      controlIconsEnabled: true,
+      fit: true,
+      center: true,
+      minZoom: 0.3,
+      maxZoom: 10,
+      zoomScaleSensitivity: 0.25,
+      contain: false,
+      preventMouseEventsDefault: false,
+    });
+    // Re-fit on viewport resize so the tree stays well-framed.
+    window.addEventListener("resize", function () {
+      panZoomInstance.resize();
+      panZoomInstance.fit();
+      panZoomInstance.center();
+    });
+  });
+</script>

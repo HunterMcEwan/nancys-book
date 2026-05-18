@@ -57,6 +57,16 @@ PORTRAITS = [
     (1, 441, "seaman",                20,  30, 580, 820),
     # Henrietta Gaillard FitzSimons (with young daughter) — b001/p441 (upper-right)
     (1, 441, "henrietta_gaillard",   1150, 30, 600, 820),
+    # Amy Perry FitzSimons as a child with a stringed instrument — b001/p392 (top-left tall portrait)
+    (1, 392, "amy_child",             80, 270, 290, 420),
+    # Amy Perry "Buzzie" Walker — infant photo, b001/p392 (lower-left)
+    (1, 392, "buzzie",                30, 820, 250, 290),
+    # James Pickens "Bo" Walker Jr. — Savannah High School portrait, b001/p393 (top-centre)
+    (1, 393, "bo_school",            610,  60, 460, 660),
+    # Emma Dee "Dee" Walker — Savannah High School portrait, b001/p393 (top-left)
+    (1, 393, "dee_school",           150,  60, 460, 660),
+    # Mary Ann Walker — Savannah High School portrait, b001/p393 (top-right)
+    (1, 393, "mary_ann_school",     1140,  60, 480, 660),
 ]
 
 
