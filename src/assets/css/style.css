@@ -788,6 +788,147 @@ li { margin-bottom: var(--space-1); }
   font-size: 1.02em;
 }
 
+/* ── Family-tree page ──────────────────────────────────────────────
+   The SVG is the artifact. The page chrome around it stays minimal
+   so the tree reads as a scrapbook page rather than as a web doc. */
+.family-tree-page {
+  max-width: 1600px;
+  margin: 0 auto var(--space-6);
+  padding: 0 var(--space-3);
+}
+.family-tree-page__header {
+  max-width: var(--measure-prose);
+  margin: 0 auto var(--space-5);
+  text-align: center;
+}
+.family-tree-page__eyebrow {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--color-accent);
+  margin: 0 0 var(--space-2);
+}
+.family-tree-page__header h1 {
+  font-family: var(--font-serif);
+  font-size: 2rem;
+  margin: 0 0 var(--space-3);
+}
+.family-tree-page__lede {
+  font-size: 1.02rem;
+  line-height: 1.55;
+  color: var(--color-ink-soft);
+}
+.family-tree-page__canvas {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  margin-bottom: var(--space-5);
+  border: 1px solid var(--color-paper-rule);
+  background: var(--color-paper);
+  box-shadow: 0 4px 18px -8px rgba(31, 26, 20, 0.25);
+}
+.family-tree-svg {
+  display: block;
+  width: 100%;
+  height: auto;
+  min-width: 1100px; /* below this we let the canvas scroll horizontally */
+}
+.family-tree-page__footer {
+  max-width: var(--measure-prose);
+  margin: 0 auto;
+  font-size: 0.95rem;
+  color: var(--color-ink-soft);
+  line-height: 1.55;
+}
+
+/* ── SVG-internal styling ───────────────────────────────────────── */
+
+/* Connecting lines — pencilled, not engineered. */
+.ft-lines .ft-line-marriage {
+  stroke: #8b6c45;
+  stroke-width: 1.2;
+  stroke-linecap: round;
+  stroke-dasharray: 5 3;
+  opacity: 0.7;
+}
+.ft-lines .ft-line-descent {
+  stroke: #8b6c45;
+  stroke-width: 1.4;
+  stroke-linecap: round;
+  fill: none;
+  opacity: 0.65;
+}
+
+/* Person cards. */
+.ft-card-backing {
+  fill: #fdf8eb;
+  stroke: #d8cba8;
+  stroke-width: 1;
+}
+.ft-photo-border {
+  fill: none;
+  stroke: rgba(31, 26, 20, 0.18);
+  stroke-width: 1;
+}
+.ft-blank-card {
+  fill: #f1e8d2;
+  stroke: #d8cba8;
+  stroke-width: 1;
+  stroke-dasharray: 4 3;
+}
+.ft-blank-mark {
+  font-family: var(--font-serif);
+  font-size: 32px;
+  fill: #b5a47a;
+  dominant-baseline: middle;
+}
+
+/* Caption text inside cards. */
+.ft-name {
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-size: 13.5px;
+  fill: var(--color-ink);
+}
+.ft-dates {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.06em;
+  fill: var(--color-ink-soft);
+}
+.ft-note {
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-size: 11px;
+  fill: var(--color-ink-faded);
+}
+
+/* Person link hover — lift the card subtly. */
+.ft-person a {
+  cursor: pointer;
+}
+.ft-person a:hover .ft-card-backing {
+  stroke: var(--color-accent);
+}
+.ft-person a:hover .ft-photo-border {
+  stroke: var(--color-accent);
+}
+
+/* Canvas-corner decorative title. */
+.ft-canvas-title__heading {
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-size: 22px;
+  fill: var(--color-accent);
+}
+.ft-canvas-title__sub {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  fill: var(--color-ink-faded);
+}
+
 /* AI Notes panel (sits between transcription and metadata) */
 .page-notes {
   background: var(--color-paper-deep);
