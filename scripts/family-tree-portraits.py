@@ -49,6 +49,14 @@ PORTRAITS = [
     (1, 271, "christopher_3rd",    50,  30, 480, 540),
     # Susan Milliken Barker FitzSimons — oval portrait in white cap, b001/p271 (upper-right)
     (1, 271, "susan_milliken_barker", 1280, 30, 460, 540),
+    # Christopher "Kit" FitzSimons Jr. — moustachioed bust, b001/p311 (upper-left)
+    (1, 311, "kit",                  20,  50, 540, 720),
+    # Frances Motte Huger — Henneby's of Columbia cabinet card, b001/p311 (upper-right)
+    (1, 311, "frances_motte_huger", 1170, 50, 560, 720),
+    # Seaman Sinkler FitzSimons — bearded cabinet card, b001/p441 (upper-left)
+    (1, 441, "seaman",                20,  30, 580, 820),
+    # Henrietta Gaillard FitzSimons (with young daughter) — b001/p441 (upper-right)
+    (1, 441, "henrietta_gaillard",   1150, 30, 600, 820),
 ]
 
 

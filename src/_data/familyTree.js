@@ -17,7 +17,7 @@
 //   parents    — optional [id, id] pair
 //   spouse     — optional id
 
-const VIEW_W = 1500;
+const VIEW_W = 2800;
 const VIEW_H = 2200;
 
 // Row Y-coordinates per generation. Each generation row is ~360px tall
@@ -117,6 +117,31 @@ const people = [
     spouse: "samuel_cadwaller",
     x: 410, y: ROW.gen_0, tilt: 1.5,
   },
+  // ── SGFS Sr.'s elder brother, "Kit", and his wife ──
+  {
+    id: "kit",
+    name: "Christopher FitzSimons Jr.",
+    nickname: "Kit",
+    dates: "1856–1925",
+    note: "cottonseed-oil pioneer, Columbia, SC",
+    photo: "/books/book-001/images/portrait/311-kit.jpg",
+    photoLink: "/books/book-001/311/",
+    parents: ["christopher_3rd", "susan_milliken_barker"],
+    spouse: "frances_motte_huger",
+    x: 620, y: ROW.gen_0, tilt: -1,
+  },
+  {
+    id: "frances_motte_huger",
+    name: "Frances Motte Huger",
+    dates: "1863–1937",
+    note: "of Columbia, SC",
+    photo: "/books/book-001/images/portrait/311-frances_motte_huger.jpg",
+    photoLink: "/books/book-001/311/",
+    spouse: "kit",
+    x: 800, y: ROW.gen_0, tilt: 2,
+  },
+
+  // ── SGFS Sr. + Minnie (Amy's parents) ──
   {
     id: "sgfs_sr",
     name: "Samuel Gaillard FitzSimons Sr.",
@@ -138,6 +163,77 @@ const people = [
     photoLink: "/books/book-001/312/",
     spouse: "sgfs_sr",
     x: 1180, y: ROW.gen_0, tilt: 2,
+  },
+
+  // ── SGFS Sr.'s siblings (Amy's paternal aunts & uncles) ──
+  {
+    id: "theodore_stoney_fs",
+    name: "Theodore Stoney FitzSimons",
+    nickname: "Uncle Tote",
+    dates: "1858–1944",
+    parents: ["christopher_3rd", "susan_milliken_barker"],
+    spouse: "sabina_mccrady",
+    x: 1380, y: ROW.gen_0, tilt: 1,
+  },
+  {
+    id: "sabina_mccrady",
+    name: "Sabina Lynch McCrady",
+    dates: "?–?",
+    spouse: "theodore_stoney_fs",
+    x: 1560, y: ROW.gen_0, tilt: -1.5,
+  },
+  {
+    id: "seaman",
+    name: "Seaman Sinkler FitzSimons",
+    dates: "?–?",
+    photo: "/books/book-001/images/portrait/441-seaman.jpg",
+    photoLink: "/books/book-001/441/",
+    parents: ["christopher_3rd", "susan_milliken_barker"],
+    spouse: "henrietta_gaillard",
+    x: 1760, y: ROW.gen_0, tilt: -2,
+  },
+  {
+    id: "henrietta_gaillard",
+    name: "Henrietta Gaillard",
+    dates: "?–1917",
+    note: "d. 17 Dec 1917",
+    photo: "/books/book-001/images/portrait/441-henrietta_gaillard.jpg",
+    photoLink: "/books/book-001/441/",
+    spouse: "seaman",
+    x: 1940, y: ROW.gen_0, tilt: 1.5,
+  },
+  {
+    id: "w_huger_fs",
+    name: "William Huger FitzSimons",
+    dates: "1861–1939",
+    parents: ["christopher_3rd", "susan_milliken_barker"],
+    spouse: "annie_cain",
+    x: 2140, y: ROW.gen_0, tilt: 1.5,
+  },
+  {
+    id: "annie_cain",
+    name: "Annie Cain",
+    dates: "?–?",
+    spouse: "w_huger_fs",
+    x: 2320, y: ROW.gen_0, tilt: -2,
+  },
+  {
+    id: "ellen_milliken_fs",
+    name: "Ellen Milliken FitzSimons",
+    nickname: "Aunt Ellen",
+    dates: "1862–1953",
+    note: "Charleston Library Society librarian, 50 years",
+    parents: ["christopher_3rd", "susan_milliken_barker"],
+    x: 2500, y: ROW.gen_0, tilt: -1,
+  },
+  {
+    id: "gaillie_fs",
+    name: "Gaillard Stoney FitzSimons",
+    nickname: "Gaillie",
+    dates: "?–?",
+    note: "of Spartanburg, SC",
+    parents: ["christopher_3rd", "susan_milliken_barker"],
+    x: 2640, y: ROW.gen_0, tilt: 2,
   },
 
   // ─── Generation 1: Amy + Jamie ───────────────────────────────────
@@ -227,7 +323,8 @@ const people = [
   {
     id: "oswald",
     name: "Oswald Beverley McEwan",
-    dates: "?–?",
+    nickname: "Bo",
+    dates: "1913–1995",
     note: "U.S. Army, Field Artillery",
     photo: "/books/book-002/images/portrait/181-oswald.jpg",
     photoLink: "/books/book-002/181/",
