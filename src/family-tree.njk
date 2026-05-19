@@ -84,9 +84,12 @@ permalink: /family-tree/
         <text class="ft-nickname" x="0" y="{{ captionY }}" text-anchor="middle">&ldquo;{{ p.nickname }}&rdquo;</text>
         {% set captionY = captionY + 16 %}
       {% endif %}
-      <text class="ft-dates" x="0" y="{{ captionY }}" text-anchor="middle">{{ p.dates }}</text>
+      {% if p.dates %}
+        <text class="ft-dates" x="0" y="{{ captionY }}" text-anchor="middle">{{ p.dates }}</text>
+        {% set captionY = captionY + 16 %}
+      {% endif %}
       {% if p.note %}
-        <text class="ft-note" x="0" y="{{ captionY + 16 }}" text-anchor="middle">{{ p.note }}</text>
+        <text class="ft-note" x="0" y="{{ captionY }}" text-anchor="middle">{{ p.note }}</text>
       {% endif %}
     </g>
   {% endfor %}

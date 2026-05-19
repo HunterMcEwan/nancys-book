@@ -95,10 +95,11 @@ PORTRAITS = [
     (1, 304, "nathalie_heyward",    1260,  460, 220, 300),
 
     # William Huger + Annie Cain children — three oval portraits in
-    # mid-row of book-001/p487, plus Marguerite and Reginald below.
-    (1, 487, "cain_fs",              600,  580, 220, 280),
-    (1, 487, "huger_jr_fs",          880,  580, 220, 280),
-    (1, 487, "sam_aviator_fs",      1150,  580, 220, 280),
+    # mid-row of book-001/p487 (in caption order L→R: Cain, W. Huger
+    # Jr., Sam the aviator), plus Marguerite and Reginald below.
+    (1, 487, "cain_fs",              820,  560, 220, 280),
+    (1, 487, "huger_jr_fs",          1090, 560, 220, 280),
+    (1, 487, "sam_aviator_fs",      1430,  600, 220, 280),
     (1, 487, "marguerite_fs",        610,  980, 220, 320),
     (1, 487, "reginald_fs",          970, 1240, 220, 260),
 
