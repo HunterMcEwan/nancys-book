@@ -27,15 +27,22 @@ ROOT = Path(__file__).resolve().parent.parent
 PORTRAITS = [
     # Amy Ann Perry FitzSimons — oval studio portrait, 1905 (b002/p047)
     (2,  47, "amy",              430, 290, 600, 770),
+    # All face crops below target the SVG card aperture aspect ratio
+    # of 140/172 ≈ 0.81 (w/h), so the displayed image isn't sliced at
+    # top/bottom. Face is vertically centered where the source photo
+    # allows it.
+
     # James Pickens Walker Sr. — cabinet card, 1900 Rockville Academy
     # (b002/p057); tight on the oval portrait, dropping the matte.
-    (2,  57, "jpw_sr",           370, 470, 480, 720),
+    (2,  57, "jpw_sr",           370, 505, 480, 590),
     # Bo Walker (James Pickens Walker Jr.) — WWII Army officer
-    # vignette portrait (b002/p169); tight on cap + face + collar.
-    (2, 169, "bo",               280, 320, 570, 780),
+    # vignette portrait (b002/p169); cap + face + collar, face centered.
+    (2, 169, "bo",               260, 171, 600, 738),
     # Oswald Beverley McEwan — WWII Army officer portrait (b002/p181);
-    # crop kept inside the photo bounds so lined paper isn't visible.
-    (2, 181, "oswald",           350, 180, 560, 920),
+    # the photo's left edge sits at source x ~ 350 on a lined notebook
+    # page, so we crop tight on cap-brim + face to avoid showing the
+    # notebook's blue rules.
+    (2, 181, "oswald",           350, 290, 540, 664),
     # Mary Ann Walker — vignette studio portrait c. 1920 ("about 2") (b002/p087)
     (2,  87, "mary_ann",         760, 1180, 520, 540),
     # Samuel Gaillard FitzSimons Sr. — oval bust portrait (b001/p312, upper-center)
@@ -118,7 +125,7 @@ PORTRAITS = [
     # and Louisa de Berniere ("Louiza F.S." in the album hand), both
     # on book-001/p443.
     (1, 443, "louisa_de_burian_fs",   80,   90, 220, 280),
-    (1, 443, "john_mccrady_fs",      130,  670, 220, 320),
+    (1, 443, "john_mccrady_fs",      125,  635, 220, 270),
 ]
 
 
