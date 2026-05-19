@@ -27,12 +27,15 @@ ROOT = Path(__file__).resolve().parent.parent
 PORTRAITS = [
     # Amy Ann Perry FitzSimons — oval studio portrait, 1905 (b002/p047)
     (2,  47, "amy",              430, 290, 600, 770),
-    # James Pickens Walker Sr. — cabinet card, 1900 Rockville Academy (b002/p057)
-    (2,  57, "jpw_sr",           300, 320, 680, 870),
-    # Bo Walker — WWII Medical Corps captain (b002/p169)
-    (2, 169, "bo",               320, 200, 900, 1100),
-    # Oswald Beverley McEwan — Army officer portrait (b002/p181)
-    (2, 181, "oswald",           280, 130, 750, 950),
+    # James Pickens Walker Sr. — cabinet card, 1900 Rockville Academy
+    # (b002/p057); tight on the oval portrait, dropping the matte.
+    (2,  57, "jpw_sr",           370, 470, 480, 720),
+    # Bo Walker (James Pickens Walker Jr.) — WWII Army officer
+    # vignette portrait (b002/p169); tight on cap + face + collar.
+    (2, 169, "bo",               280, 320, 570, 780),
+    # Oswald Beverley McEwan — WWII Army officer portrait (b002/p181);
+    # crop kept inside the photo bounds so lined paper isn't visible.
+    (2, 181, "oswald",           350, 180, 560, 920),
     # Mary Ann Walker — vignette studio portrait c. 1920 ("about 2") (b002/p087)
     (2,  87, "mary_ann",         760, 1180, 520, 540),
     # Samuel Gaillard FitzSimons Sr. — oval bust portrait (b001/p312, upper-center)
@@ -46,13 +49,16 @@ PORTRAITS = [
     # at the lower edge.
     (1,   2, "catherine_pritchard", 920, 250, 680, 720),
     # Dr. Christopher FitzSimons 3rd — bearded oval bust portrait, b001/p271 (upper-left)
-    (1, 271, "christopher_3rd",    50,  30, 480, 540),
+    (1, 271, "christopher_3rd",    50,  60, 450, 510),
     # Susan Milliken Barker FitzSimons — oval portrait in white cap, b001/p271 (upper-right)
     (1, 271, "susan_milliken_barker", 1280, 30, 460, 540),
     # Christopher "Kit" FitzSimons Jr. — moustachioed bust, b001/p311 (upper-left)
     (1, 311, "kit",                  20,  50, 540, 720),
-    # Frances Motte Huger — Henneby's of Columbia cabinet card, b001/p311 (upper-right)
-    (1, 311, "frances_motte_huger", 1170, 50, 560, 720),
+    # Frances Motte Huger — Hennies of Columbia cabinet card, b001/p311
+    # (upper-right). Tight on her face/upper body — the original
+    # cabinet card shows her holding a grandchild on her lap, but the
+    # tree card just wants Frances herself.
+    (1, 311, "frances_motte_huger", 1320, 50, 320, 380),
     # Seaman Sinkler FitzSimons — bearded cabinet card, b001/p441 (upper-left)
     (1, 441, "seaman",                20,  30, 580, 820),
     # Henrietta Gaillard FitzSimons (with young daughter) — b001/p441 (upper-right)
@@ -99,15 +105,20 @@ PORTRAITS = [
     # Jr., Sam the aviator), plus Marguerite and Reginald below.
     (1, 487, "cain_fs",              820,  560, 220, 280),
     (1, 487, "huger_jr_fs",          1090, 560, 220, 280),
-    (1, 487, "sam_aviator_fs",      1430,  600, 220, 280),
+    (1, 487, "sam_aviator_fs",      1420,  680, 200, 260),
     (1, 487, "marguerite_fs",        610,  980, 220, 320),
     (1, 487, "reginald_fs",          970, 1240, 220, 260),
+
+    # Seaman + Henrietta's only child Christopher (b. 1888, d. Waycross
+    # GA 1898 in his 11th year). Cabinet portrait in dark mat, lower
+    # centre of book-001/p441.
+    (1, 441, "christopher_seaman_son", 730, 930, 260, 340),
 
     # Theodore Stoney's children — John McCrady (Navy uniform, WWI)
     # and Louisa de Berniere ("Louiza F.S." in the album hand), both
     # on book-001/p443.
     (1, 443, "louisa_de_burian_fs",   80,   90, 220, 280),
-    (1, 443, "john_mccrady_fs",      120,  540, 220, 290),
+    (1, 443, "john_mccrady_fs",      130,  670, 220, 320),
 ]
 
 

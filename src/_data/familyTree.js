@@ -378,6 +378,8 @@ const people = [
     name: "Christopher FitzSimons",
     dates: "1888–1898",
     note: "d. at Waycross, GA, age 10",
+    photo: "/books/book-001/images/portrait/441-christopher_seaman_son.jpg",
+    photoLink: "/books/book-001/441/",
     parents: ["seaman", "henrietta_gaillard"],
     x: 1850, y: ROW.gen_1_cousins, tilt: 1,
   },
