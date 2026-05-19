@@ -40,6 +40,52 @@ layout).
 - **In body transcription text**: reproduce the spelling the writer used (the family wrote both `Fitz Simons` and `FitzSimons`; the original page is the authority).
 - For married women, list both maiden and married names in metadata where known: *Catherine Pritchard*, *Mrs. Hammond née FitzSimons*.
 
+## Decoding the compiler's hand — Amy FitzSimons
+
+Most of the handwritten content in these albums is in the hand of **Amy Ann
+Perry FitzSimons** (1888–1973), the compiler. Two of her letterforms cause
+frequent, predictable misreads. When you see one of these "ghost letters,"
+re-read in context before transcribing:
+
+### Capital **D** that looks like **H**
+
+Amy's capital D often leaves its top loop unclosed — the upper-right curve
+sweeps over without quite meeting the descending stroke. To a modern eye
+that sees a vertical stroke with a separate top curve, it reads as **H**.
+This is the single most common misread in the album and it always changes
+meaning materially. Confirmed instances so far:
+
+- **Dad** → mistranscribed as **Had** (her father, Samuel Gaillard
+  FitzSimons Sr.; appears on virtually every memoir page)
+- **Dunkin** Perry FitzSimons → **Hunkin** / **Hunter Perry** (her
+  infant brother who died on her 7th birthday; cf. book-001 p630)
+- **Dee** Walker (Emma Dee Walker Corbell, her middle daughter) →
+  **Ilee** (the H form here was further mistranscribed as Il)
+- **Duncan** Wragg → **Hunkin** (1881 letterhead, p339)
+
+When the cursive *could* be H but the context wants a D-word (a
+relative's known nickname, "Dad," "Dear," a date, a place), trust
+context and write the D form. If you're keeping a `*[uncertain]*`
+annotation, prefer the D reading.
+
+### Other recurring patterns
+
+- "Kit" (the family nickname for Christopher) is sometimes misread as
+  "Hit." Kit is *always* the right reading — he is Amy's paternal uncle
+  Christopher FitzSimons Jr. (1856–1925).
+- Long-tailed lowercase **s** at the end of a word (especially in
+  proper nouns) can read as an ornamented **g** or **y**.
+
+### When you fix one of these, fix it — don't comment on it
+
+The transcription is what the reader sees. If you detect a D-cursive
+misread on an already-transcribed page, **edit the body** to the correct
+reading; do not leave the misread in place and explain it in the AI Notes
+panel. (A reader-facing note saying *"'Had' here is a misread of cursive
+D"* is a bug — the correct form is to write *"Dad"* in the body and say
+nothing.) Editorial annotation belongs on genuine ambiguities, not on
+errors the transcriber has already resolved.
+
 ## Dates
 
 - Use `date_range` in frontmatter, formatted as `YYYY` or `YYYY–YYYY` (en-dash, not hyphen).

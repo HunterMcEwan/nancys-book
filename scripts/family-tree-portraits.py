@@ -62,11 +62,51 @@ PORTRAITS = [
     # Amy Perry "Buzzie" Walker — infant photo, b001/p392 (lower-left)
     (1, 392, "buzzie",                30, 820, 250, 290),
     # James Pickens "Bo" Walker Jr. — Savannah High School portrait, b001/p393 (top-centre)
-    (1, 393, "bo_school",            610,  60, 460, 660),
+    (1, 393, "bo_school",            650, 160, 460, 660),
     # Emma Dee "Dee" Walker — Savannah High School portrait, b001/p393 (top-left)
-    (1, 393, "dee_school",           150,  60, 460, 660),
+    (1, 393, "dee_school",           160, 130, 460, 660),
     # Mary Ann Walker — Savannah High School portrait, b001/p393 (top-right)
-    (1, 393, "mary_ann_school",     1140,  60, 480, 660),
+    (1, 393, "mary_ann_school",     1240, 130, 480, 660),
+
+    # ── Dr. Christopher 3rd's seven children — the 1890s adult group
+    # portrait pasted on book-001/p272 (lower photo). We crop the four
+    # for whom we don't already have a dedicated cabinet card: Theodore
+    # Stoney "Tote" (back-left), Ellen Milliken (back-centre, the only
+    # daughter — unmarried, Charleston Library Society librarian),
+    # William Huger (back-right), and Gaillard Stoney "Gaillie"
+    # (front-left). The remaining three (Kit, SGFS Sr., Seaman Sinkler)
+    # already have sharper solo cabinet-card crops elsewhere.
+    (1, 272, "theodore_stoney_fs",   216, 1000, 220, 290),
+    (1, 272, "ellen_milliken_fs",    461, 1020, 220, 290),
+    (1, 272, "w_huger_fs",           696, 1020, 220, 290),
+    (1, 272, "gaillie_fs",            81, 1160, 220, 290),
+
+    # ── Amy's FitzSimons first cousins (children of her father's
+    # siblings). Each crop is hand-tuned per source page. Several of
+    # these cousins appear only in tipped-in studio portraits or news
+    # clippings on densely-laid pages, so crops are conservative —
+    # widen rather than tighten if a face gets clipped.
+
+    # Christopher FitzSimons 5th (b. 1892) — small oval boy portrait
+    # in middle-centre of book-001/p304.
+    (1, 304, "christopher_5th",      785,  820, 200, 260),
+    # Nathalie Heyward (m. Christopher 5th) — profile head-and-shoulders,
+    # middle-right of p304.
+    (1, 304, "nathalie_heyward",    1260,  460, 220, 300),
+
+    # William Huger + Annie Cain children — three oval portraits in
+    # mid-row of book-001/p487, plus Marguerite and Reginald below.
+    (1, 487, "cain_fs",              600,  580, 220, 280),
+    (1, 487, "huger_jr_fs",          880,  580, 220, 280),
+    (1, 487, "sam_aviator_fs",      1150,  580, 220, 280),
+    (1, 487, "marguerite_fs",        610,  980, 220, 320),
+    (1, 487, "reginald_fs",          970, 1240, 220, 260),
+
+    # Theodore Stoney's children — John McCrady (Navy uniform, WWI)
+    # and Louisa de Berniere ("Louiza F.S." in the album hand), both
+    # on book-001/p443.
+    (1, 443, "louisa_de_burian_fs",   80,   90, 220, 280),
+    (1, 443, "john_mccrady_fs",      120,  540, 220, 290),
 ]
 
 

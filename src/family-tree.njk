@@ -114,7 +114,13 @@ permalink: /family-tree/
       maxZoom: 10,
       zoomScaleSensitivity: 0.25,
       contain: false,
-      preventMouseEventsDefault: false,
+      // Capture wheel events over the SVG so the page does not also scroll
+      // while the user is zooming the tree. The library attaches its wheel
+      // listener with {passive: false} when this flag is true, which is
+      // what modern Chrome requires for preventDefault() to take effect.
+      // Portrait <a> links still navigate — only mouse-default (text
+      // selection, page scroll) is suppressed.
+      preventMouseEventsDefault: true,
     });
     // Re-fit on viewport resize so the tree stays well-framed.
     window.addEventListener("resize", function () {

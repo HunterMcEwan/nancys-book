@@ -191,23 +191,9 @@ const people = [
     x: 2060, y: ROW.gen_minus_1, tilt: 1.5,
   },
 
-  // ─── Generation 0: Amy's grandparents ────────────────────────────
-  {
-    id: "samuel_cadwaller",
-    name: "Samuel Cadwaller Walker",
-    dates: "1842–1923",
-    note: "of Winchester, VA; later Havre, MT",
-    spouse: "emma_dee_pickens",
-    x: 230, y: ROW.gen_0, tilt: -2,
-  },
-  {
-    id: "emma_dee_pickens",
-    name: "Emma Dee Pickens",
-    dates: "1856–1933",
-    note: "of Gnatty Creek, Barbour Co., WV",
-    spouse: "samuel_cadwaller",
-    x: 410, y: ROW.gen_0, tilt: 1.5,
-  },
+  // ─── Generation 0: Amy's parents' generation ─────────────────────
+  // (Amy's paternal in-laws — Samuel C. Walker + Emma Dee Pickens —
+  //  are omitted: they have no photo or dedicated page in the album.)
 
   // SGFS Sr.'s elder brother "Kit" + wife
   {
@@ -257,12 +243,17 @@ const people = [
     x: 1180, y: ROW.gen_0, tilt: 2,
   },
 
-  // Remaining SGFS Sr. siblings (Amy's other paternal aunts & uncles)
+  // Remaining SGFS Sr. siblings (Amy's other paternal aunts & uncles).
+  // Portraits for Theodore Stoney, Ellen Milliken, William Huger, and
+  // Gaillie come from the c. 1890 adult group photograph of all seven
+  // Christopher-3rd children pasted on book-001 p272.
   {
     id: "theodore_stoney_fs",
     name: "Theodore Stoney FitzSimons",
     nickname: "Uncle Tote",
     dates: "1858–1944",
+    photo: "/books/book-001/images/portrait/272-theodore_stoney_fs.jpg",
+    photoLink: "/books/book-001/272/",
     parents: ["christopher_3rd", "susan_milliken_barker"],
     spouse: "sabina_mccrady",
     x: 1380, y: ROW.gen_0, tilt: 1,
@@ -298,6 +289,8 @@ const people = [
     id: "w_huger_fs",
     name: "William Huger FitzSimons",
     dates: "1861–1939",
+    photo: "/books/book-001/images/portrait/272-w_huger_fs.jpg",
+    photoLink: "/books/book-001/272/",
     parents: ["christopher_3rd", "susan_milliken_barker"],
     spouse: "annie_cain",
     x: 2140, y: ROW.gen_0, tilt: 1.5,
@@ -315,6 +308,8 @@ const people = [
     nickname: "Aunt Ellen",
     dates: "1862–1953",
     note: "Charleston Library Society librarian, 50 years",
+    photo: "/books/book-001/images/portrait/272-ellen_milliken_fs.jpg",
+    photoLink: "/books/book-001/272/",
     parents: ["christopher_3rd", "susan_milliken_barker"],
     x: 2500, y: ROW.gen_0, tilt: -1,
   },
@@ -324,6 +319,8 @@ const people = [
     nickname: "Gaillie",
     dates: "?–?",
     note: "of Spartanburg, SC",
+    photo: "/books/book-001/images/portrait/272-gaillie_fs.jpg",
+    photoLink: "/books/book-001/272/",
     parents: ["christopher_3rd", "susan_milliken_barker"],
     x: 2640, y: ROW.gen_0, tilt: 2,
   },
@@ -352,13 +349,19 @@ const people = [
     id: "john_mccrady_fs",
     name: "John McCrady FitzSimons",
     dates: "?–?",
+    note: "U.S. Navy, WWI",
+    photo: "/books/book-001/images/portrait/443-john_mccrady_fs.jpg",
+    photoLink: "/books/book-001/443/",
     parents: ["theodore_stoney_fs", "sabina_mccrady"],
     x: 1320, y: ROW.gen_1_cousins, tilt: -1,
   },
   {
     id: "louisa_de_burian_fs",
-    name: "Louisa de Burian FitzSimons",
+    name: "Louisa de Berniere FitzSimons",
     dates: "?–?",
+    note: "GA welfare administrator",
+    photo: "/books/book-001/images/portrait/443-louisa_de_burian_fs.jpg",
+    photoLink: "/books/book-001/443/",
     parents: ["theodore_stoney_fs", "sabina_mccrady"],
     x: 1470, y: ROW.gen_1_cousins, tilt: 1,
   },
@@ -400,6 +403,8 @@ const people = [
     nickname: "the WWI aviator",
     dates: "c. 1894–1932",
     note: "founded the Lost Battalion; d. by suicide near Flat Rock",
+    photo: "/books/book-001/images/portrait/487-sam_aviator_fs.jpg",
+    photoLink: "/books/book-001/487/",
     parents: ["w_huger_fs", "annie_cain"],
     x: 2270, y: ROW.gen_1_cousins, tilt: -1.5,
   },
@@ -431,7 +436,6 @@ const people = [
     note: "Atlantic Coast Line Railroad",
     photo: "/books/book-002/images/portrait/057-jpw_sr.jpg",
     photoLink: "/books/book-002/057/",
-    parents: ["samuel_cadwaller", "emma_dee_pickens"],
     spouse: "amy",
     x: 700, y: ROW.gen_1, tilt: -2,
   },
