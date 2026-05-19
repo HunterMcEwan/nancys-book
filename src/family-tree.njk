@@ -105,6 +105,95 @@ permalink: /family-tree/
 
 <script src="https://cdn.jsdelivr.net/npm/svg-pan-zoom@3.6.1/dist/svg-pan-zoom.min.js"></script>
 <script>
+  // svg-pan-zoom 3.6.1 does not handle two-finger pinch — its built-in
+  // touch path reads only touches[0] and treats a pinch as a single-finger
+  // pan. We replace the touch path with a Pointer Events shim that
+  // supports both one-finger pan and two-finger pinch-to-zoom on phones
+  // and tablets. Mouse events are left to the library so desktop wheel
+  // zoom + click-drag pan are unchanged.
+  var pinchTouchHandler = {
+    haltEventListeners: ["touchstart", "touchend", "touchmove", "touchleave", "touchcancel"],
+    init: function (options) {
+      var instance = options.instance;
+      var svg = options.svgElement;
+      var pointers = new Map();
+      var startDist = 0;
+      var startZoom = 1;
+      var midpoint = null;
+      var lastSingle = null;
+
+      svg.style.touchAction = "none";
+
+      function pairDist() {
+        var p = Array.from(pointers.values());
+        return Math.hypot(p[0].x - p[1].x, p[0].y - p[1].y);
+      }
+      function pairMid() {
+        var p = Array.from(pointers.values());
+        var r = svg.getBoundingClientRect();
+        return { x: (p[0].x + p[1].x) / 2 - r.left, y: (p[0].y + p[1].y) / 2 - r.top };
+      }
+
+      function onPointerDown(e) {
+        if (e.pointerType === "mouse") return; // library handles mouse
+        pointers.set(e.pointerId, { x: e.clientX, y: e.clientY });
+        if (pointers.size === 2) {
+          startDist = pairDist();
+          startZoom = instance.getZoom();
+          midpoint = pairMid();
+          lastSingle = null;
+        } else if (pointers.size === 1) {
+          lastSingle = { x: e.clientX, y: e.clientY };
+        }
+      }
+      function onPointerMove(e) {
+        if (e.pointerType === "mouse") return;
+        if (!pointers.has(e.pointerId)) return;
+        pointers.set(e.pointerId, { x: e.clientX, y: e.clientY });
+        if (pointers.size === 2) {
+          e.preventDefault();
+          if (startDist > 0) {
+            instance.zoomAtPoint(startZoom * (pairDist() / startDist), midpoint);
+          }
+        } else if (pointers.size === 1 && lastSingle) {
+          var dx = e.clientX - lastSingle.x;
+          var dy = e.clientY - lastSingle.y;
+          instance.panBy({ x: dx, y: dy });
+          lastSingle = { x: e.clientX, y: e.clientY };
+        }
+      }
+      function onPointerUp(e) {
+        if (e.pointerType === "mouse") return;
+        pointers.delete(e.pointerId);
+        if (pointers.size < 2) startDist = 0;
+        if (pointers.size === 0) {
+          lastSingle = null;
+        } else if (pointers.size === 1) {
+          var remaining = Array.from(pointers.values())[0];
+          lastSingle = { x: remaining.x, y: remaining.y };
+        }
+      }
+      function onGestureStart(e) { e.preventDefault(); }
+
+      svg.addEventListener("pointerdown", onPointerDown);
+      svg.addEventListener("pointermove", onPointerMove);
+      svg.addEventListener("pointerup", onPointerUp);
+      svg.addEventListener("pointercancel", onPointerUp);
+      svg.addEventListener("pointerleave", onPointerUp);
+      svg.addEventListener("gesturestart", onGestureStart);
+
+      this._destroy = function () {
+        svg.removeEventListener("pointerdown", onPointerDown);
+        svg.removeEventListener("pointermove", onPointerMove);
+        svg.removeEventListener("pointerup", onPointerUp);
+        svg.removeEventListener("pointercancel", onPointerUp);
+        svg.removeEventListener("pointerleave", onPointerUp);
+        svg.removeEventListener("gesturestart", onGestureStart);
+      };
+    },
+    destroy: function () { if (this._destroy) this._destroy(); },
+  };
+
   document.addEventListener("DOMContentLoaded", function () {
     var svg = document.getElementById("family-tree-svg");
     if (!svg || typeof svgPanZoom !== "function") return;
@@ -124,6 +213,7 @@ permalink: /family-tree/
       // Portrait <a> links still navigate — only mouse-default (text
       // selection, page scroll) is suppressed.
       preventMouseEventsDefault: true,
+      customEventsHandler: pinchTouchHandler,
     });
     // Re-fit on viewport resize so the tree stays well-framed.
     window.addEventListener("resize", function () {
