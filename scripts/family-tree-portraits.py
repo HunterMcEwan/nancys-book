@@ -34,15 +34,13 @@ PORTRAITS = [
 
     # James Pickens Walker Sr. — cabinet card, 1900 Rockville Academy
     # (b002/p057); tight on the oval portrait, dropping the matte.
-    (2,  57, "jpw_sr",           370, 505, 480, 590),
+    (2,  57, "jpw_sr",           440, 555, 400, 493),
     # Bo Walker (James Pickens Walker Jr.) — WWII Army officer
     # vignette portrait (b002/p169); cap + face + collar, face centered.
     (2, 169, "bo",               260, 171, 600, 738),
     # Oswald Beverley McEwan — WWII Army officer portrait (b002/p181);
-    # the photo's left edge sits at source x ~ 350 on a lined notebook
-    # page, so we crop tight on cap-brim + face to avoid showing the
-    # notebook's blue rules.
-    (2, 181, "oswald",           350, 290, 540, 664),
+    # tight on cap-brim + face, kept inside photo bounds.
+    (2, 181, "oswald",           390, 310, 480, 590),
     # Mary Ann Walker — vignette studio portrait c. 1920 ("about 2") (b002/p087)
     (2,  87, "mary_ann",         760, 1180, 520, 540),
     # Samuel Gaillard FitzSimons Sr. — oval bust portrait (b001/p312, upper-center)
@@ -67,19 +65,22 @@ PORTRAITS = [
     # tree card just wants Frances herself.
     (1, 311, "frances_motte_huger", 1320, 50, 320, 380),
     # Seaman Sinkler FitzSimons — bearded cabinet card, b001/p441 (upper-left)
-    (1, 441, "seaman",                20,  30, 580, 820),
-    # Henrietta Gaillard FitzSimons (with young daughter) — b001/p441 (upper-right)
-    (1, 441, "henrietta_gaillard",   1150, 30, 600, 820),
+    (1, 441, "seaman",                70,  65, 300, 369),
+    # Henrietta Gaillard FitzSimons (with young son) — b001/p441
+    # (upper-right). Henrietta is the woman standing at the BACK of the
+    # cabinet card; her son leans in front of her. Crop centered on her
+    # face so the tree card shows her, not him.
+    (1, 441, "henrietta_gaillard",   1470, 100, 160, 197),
     # Amy Perry FitzSimons as a child with a stringed instrument — b001/p392 (top-left tall portrait)
     (1, 392, "amy_child",             80, 270, 290, 420),
     # Amy Perry "Buzzie" Walker — infant photo, b001/p392 (lower-left)
     (1, 392, "buzzie",                30, 820, 250, 290),
     # James Pickens "Bo" Walker Jr. — Savannah High School portrait, b001/p393 (top-centre)
-    (1, 393, "bo_school",            650, 160, 460, 660),
+    (1, 393, "bo_school",            650, 176, 460, 568),
     # Emma Dee "Dee" Walker — Savannah High School portrait, b001/p393 (top-left)
-    (1, 393, "dee_school",           160, 130, 460, 660),
+    (1, 393, "dee_school",           150, 110, 460, 568),
     # Mary Ann Walker — Savannah High School portrait, b001/p393 (top-right)
-    (1, 393, "mary_ann_school",     1240, 130, 480, 660),
+    (1, 393, "mary_ann_school",     1240, 106, 460, 568),
 
     # ── Dr. Christopher 3rd's seven children — the 1890s adult group
     # portrait pasted on book-001/p272 (lower photo). We crop the four
@@ -91,7 +92,7 @@ PORTRAITS = [
     # already have sharper solo cabinet-card crops elsewhere.
     (1, 272, "theodore_stoney_fs",   216, 1000, 220, 290),
     (1, 272, "ellen_milliken_fs",    461, 1020, 220, 290),
-    (1, 272, "w_huger_fs",           696, 1020, 220, 290),
+    (1, 272, "w_huger_fs",           720,  980, 180, 222),
     (1, 272, "gaillie_fs",            81, 1160, 220, 290),
 
     # ── Amy's FitzSimons first cousins (children of her father's
@@ -112,20 +113,24 @@ PORTRAITS = [
     # Jr., Sam the aviator), plus Marguerite and Reginald below.
     (1, 487, "cain_fs",              820,  560, 220, 280),
     (1, 487, "huger_jr_fs",          1090, 560, 220, 280),
-    (1, 487, "sam_aviator_fs",      1420,  680, 200, 260),
+    # Sam aviator's iconic full-length WWI uniform portrait is on
+    # book-001/p470 (top-left), captioned "Samuel G. FitzSimons /
+    # World War I" — much more recognizable than the c. 1910s civilian
+    # oval on p487. Card uses the p470 uniform portrait.
+    (1, 470, "sam_aviator_fs",        40,   30, 280, 345),
     (1, 487, "marguerite_fs",        610,  980, 220, 320),
     (1, 487, "reginald_fs",          970, 1240, 220, 260),
 
     # Seaman + Henrietta's only child Christopher (b. 1888, d. Waycross
     # GA 1898 in his 11th year). Cabinet portrait in dark mat, lower
     # centre of book-001/p441.
-    (1, 441, "christopher_seaman_son", 730, 930, 260, 340),
+    (1, 441, "christopher_seaman_son", 730, 990, 260, 320),
 
     # Theodore Stoney's children — John McCrady (Navy uniform, WWI)
     # and Louisa de Berniere ("Louiza F.S." in the album hand), both
     # on book-001/p443.
     (1, 443, "louisa_de_burian_fs",   80,   90, 220, 280),
-    (1, 443, "john_mccrady_fs",      125,  635, 220, 270),
+    (1, 443, "john_mccrady_fs",       90,  660, 180, 222),
 ]
 
 
