@@ -425,6 +425,21 @@ const people = [
     parents: ["w_huger_fs", "annie_cain"],
     x: 2530, y: ROW.gen_1_cousins, tilt: -1,
   },
+  // Frank Lockwood FitzSimons Sr. — first cousin to Amy on the FS side
+  // (a grandchild of Dr. Christopher 3rd + Susan Milliken Barker per his
+  // own self-description in the 1974 Times-News interview). Which of
+  // the doctor's seven children was his parent is not yet pinned down,
+  // so the card has no descent line; once we identify the parent the
+  // `parents` field can be filled in.
+  {
+    id: "frank_lockwood_fs_sr",
+    name: "Frank Lockwood FitzSimons Sr.",
+    dates: "",
+    note: "Hendersonville NC historian; Navy Cross, WWI",
+    photo: "/books/book-001/images/portrait/584-frank_lockwood_fs_sr.jpg",
+    photoLink: "/books/book-001/584/",
+    x: 2680, y: ROW.gen_1_cousins, tilt: 1.5,
+  },
 
   // ─── Generation 1: Amy + Jamie + Amy's siblings ────────────────
   // Amy and Jamie shifted slightly right of their old position so the

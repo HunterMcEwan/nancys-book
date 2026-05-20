@@ -131,6 +131,12 @@ PORTRAITS = [
     # on book-001/p443.
     (1, 443, "louisa_de_burian_fs",   80,   90, 220, 280),
     (1, 443, "john_mccrady_fs",       90,  660, 180, 222),
+
+    # Frank Lockwood FitzSimons Sr. (Amy's first cousin) — Hendersonville
+    # NC historian, author of *Along the Banks of the Oklawaha*, WWI
+    # Marine medic (Navy Cross). Portrait from the 1974 Times-News
+    # interview clipping on book-001/p584.
+    (1, 584, "frank_lockwood_fs_sr", 680,  590, 200, 246),
 ]
 
 
